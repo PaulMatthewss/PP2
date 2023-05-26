@@ -24,20 +24,8 @@
         android:layout_height="wrap_content"
         android:text="Название"/>
 
-    <EditText
-        android:id="@+id/group_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Год"/>
-
-
-
     <Spinner
-        android:id="@+id/year"
+        android:id="@+id/group_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="15dp"
@@ -45,6 +33,17 @@
         tools:ignore="LabelFor,SpeakableTextPresentCheck,VisualLintTextFieldSize"
         android:inputType="text"
         android:importantForAutofill="no" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Год"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Здесь должен быть выбор года"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"

@@ -29,7 +29,7 @@ class App_Database extends SQLiteOpenHelper {
         String query = "CREATE TABLE " + TABLE_GROUPS +
                 " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 COLUMN_GROUP_NAME + " TEXT, " +
-                COLUMN_GROUP_YEAR + " TEXT);";
+                COLUMN_GROUP_YEAR + " DATE);";
         db.execSQL(query);
     }
     @Override
@@ -37,12 +37,11 @@ class App_Database extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_GROUPS);
         onCreate(db);
     }
-    void addGroup(String group_name, String year){
+    void addGroup(String group_name){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
         cv.put(COLUMN_GROUP_NAME, group_name);
-        cv.put(COLUMN_GROUP_YEAR, year);
         long result = db.insert(TABLE_GROUPS, null, cv);
         if(result == -1){
             Toast.makeText(context, "Ошибка записи", Toast.LENGTH_SHORT).show();
