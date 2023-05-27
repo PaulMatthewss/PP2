@@ -37,11 +37,12 @@ class App_Database extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_GROUPS);
         onCreate(db);
     }
-    void addGroup(String group_name){
+    void addGroup(String group_name, String group_year){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
         cv.put(COLUMN_GROUP_NAME, group_name);
+        cv.put(COLUMN_GROUP_YEAR, group_year);
         long result = db.insert(TABLE_GROUPS, null, cv);
         if(result == -1){
             Toast.makeText(context, "Ошибка записи", Toast.LENGTH_SHORT).show();

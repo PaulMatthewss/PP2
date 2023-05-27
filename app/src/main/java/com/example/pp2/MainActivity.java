@@ -13,13 +13,14 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements IRecycleView {
 
     Button Add_Button;
     RecyclerView recyclerView;
     App_Database app_db;
     CustomAdapter customAdapter;
     ArrayList<String> group_id, group_name, group_year;
+    IRecycleView iRecycleView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
         storeDataInArrays();
 
-        customAdapter = new CustomAdapter(MainActivity.this, group_id, group_name, group_year);
+        customAdapter = new CustomAdapter(MainActivity.this, group_id, group_name, group_year, iRecycleView);
         recyclerView.setAdapter(customAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
     }
@@ -59,5 +60,11 @@ public class MainActivity extends AppCompatActivity {
                 group_year.add(cursor.getString(2));
             }
         }
+    }
+
+    @Override
+    public void onItemClick(int position) {
+        Intent intent = new Intent(MainActivity.this, GroupActivity.class);
+        startActivity(intent);
     }
 }

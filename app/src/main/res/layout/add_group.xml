@@ -11,38 +11,40 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
         android:text="Добавление группы"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:textSize="18sp"
-        android:layout_marginBottom="15dp"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Название"/>
+        android:text="Название" />
 
     <Spinner
         android:id="@+id/group_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="15dp"
-        android:minHeight="48dp"
-        tools:ignore="LabelFor,SpeakableTextPresentCheck,VisualLintTextFieldSize"
+        android:importantForAutofill="no"
         android:inputType="text"
-        android:importantForAutofill="no" />
+        android:minHeight="48dp"
+        tools:ignore="LabelFor,SpeakableTextPresentCheck,VisualLintTextFieldSize" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Год"/>
+        android:text="Год" />
 
-    <TextView
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/year"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Здесь должен быть выбор года"/>
+        android:hint="Введите год"
+        android:minHeight="48dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -50,20 +52,20 @@
         android:orientation="horizontal">
 
         <Button
+            android:id="@+id/Cancel_Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:height="48dp"
             android:text="назад"
-            tools:ignore="ButtonStyle,TouchTargetSizeCheck"
-            android:id="@+id/Cancel_Button"/>
+            tools:ignore="ButtonStyle,TouchTargetSizeCheck" />
 
         <Button
+            android:id="@+id/Submit_Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:height="48dp"
             android:text="добавить"
-            tools:ignore="ButtonStyle,TouchTargetSizeCheck"
-            android:id="@+id/Submit_Button"/>
+            tools:ignore="ButtonStyle,TouchTargetSizeCheck" />
     </LinearLayout>
 
 </LinearLayout>
