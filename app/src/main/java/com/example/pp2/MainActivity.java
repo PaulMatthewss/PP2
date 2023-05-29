@@ -13,14 +13,13 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements IRecycleView {
+public class MainActivity extends AppCompatActivity {
 
     Button Add_Button;
     RecyclerView recyclerView;
     App_Database app_db;
+    ArrayList<String> subject_id, subject_name, subject_lang, subject_ide;
     CustomAdapter customAdapter;
-    ArrayList<String> group_id, group_name, group_year;
-    IRecycleView iRecycleView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,38 +32,35 @@ public class MainActivity extends AppCompatActivity implements IRecycleView {
         Add_Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, GroupActivity.class);
+                Intent intent = new Intent(MainActivity.this, AddGroupActivity.class);
                 startActivity(intent);
             }
         });
 
         app_db = new App_Database(MainActivity.this);
-        group_id = new ArrayList<>();
-        group_name = new ArrayList<>();
-        group_year = new ArrayList<>();
+        subject_id = new ArrayList<>();
+        subject_name = new ArrayList<>();
+        subject_lang = new ArrayList<>();
+        subject_ide = new ArrayList<>();
 
         storeDataInArrays();
 
-        customAdapter = new CustomAdapter(MainActivity.this, group_id, group_name, group_year, iRecycleView);
+        customAdapter = new CustomAdapter(MainActivity.this, subject_id, subject_name, subject_lang, subject_ide);
         recyclerView.setAdapter(customAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
     }
+
     void storeDataInArrays(){
         Cursor cursor = app_db.readAllData();
         if (cursor.getCount() == 0){
             Toast.makeText(this, "Нет данных", Toast.LENGTH_SHORT).show();
         }else{
             while (cursor.moveToNext()){
-                group_id.add(cursor.getString(0));
-                group_name.add(cursor.getString(1));
-                group_year.add(cursor.getString(2));
+                subject_id.add(cursor.getString(0));
+                subject_name.add(cursor.getString(1));
+                subject_lang.add(cursor.getString(2));
+                subject_ide.add(cursor.getString(3));
             }
         }
-    }
-
-    @Override
-    public void onItemClick(int position) {
-        Intent intent = new Intent(MainActivity.this, GroupActivity.class);
-        startActivity(intent);
     }
 }

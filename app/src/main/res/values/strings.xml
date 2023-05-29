@@ -1,3 +1,11 @@
 <resources>
-    <string name="app_name">PP2</string>
+    <string name="app_name">Журнал</string>
+    <string name="info">Ваши дисциплины</string>
+    <string name="button_text">Добавить\n дисциплину</string>
+    <string name="info2">Добавление дисциплины</string>
+    <string name="FIO">Название дисциплины:</string>
+    <string name="Languages">ЯП:</string>
+    <string name="IDE">IDE:</string>
+    <string name="button_add">Подтвердить</string>
+    <string name="button_cancel">Назад</string>
 </resources>
