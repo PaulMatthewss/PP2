@@ -3,9 +3,20 @@
     <string name="info">Ваши дисциплины</string>
     <string name="button_text">Добавить\n дисциплину</string>
     <string name="info2">Добавление дисциплины</string>
-    <string name="FIO">Название дисциплины:</string>
+    <string name="FIO">ФИО студента:</string>
     <string name="Languages">ЯП:</string>
     <string name="IDE">IDE:</string>
     <string name="button_add">Подтвердить</string>
     <string name="button_cancel">Назад</string>
+    <string name="info_update">Редактирование дисциплины</string>
+    <string name="button_update">Обновить</string>
+    <string name="info_groups">Группы</string>
+    <string name="button_addgroup">Добавить группу</string>
+    <string name="info_addgroups">Добавление группы</string>
+    <string name="group_name">Название группы</string>
+    <string name="info_students">Студенты</string>
+    <string name="button_students">Добавить студента</string>
+    <string name="subject_name">Название дисциплины</string>
+    <string name="Gender">Пол</string>
+    <string name="info_add_student">Добавление студента</string>
 </resources>
