@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     App_Database app_db;
     ArrayList<String> subject_id, subject_name, subject_lang, subject_ide;
-    CustomAdapter customAdapter;
+    MainRowAdapter mainRowAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,8 +46,8 @@ public class MainActivity extends AppCompatActivity {
 
         storeDataInArrays();
 
-        customAdapter = new CustomAdapter(MainActivity.this, this, subject_id, subject_name, subject_lang, subject_ide);
-        recyclerView.setAdapter(customAdapter);
+        mainRowAdapter = new MainRowAdapter(MainActivity.this, this, subject_id, subject_name, subject_lang, subject_ide);
+        recyclerView.setAdapter(mainRowAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
     }
 

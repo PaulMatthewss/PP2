@@ -15,15 +15,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHolder> {
+public class MainRowAdapter extends RecyclerView.Adapter<MainRowAdapter.MyViewHolder> {
 
     private Context context;
     private ArrayList subject_id, subject_name, subject_lang, subject_ide;
 
     Activity activity;
 
-    CustomAdapter(Activity activity, Context context, ArrayList subject_id, ArrayList subject_name,
-                  ArrayList subject_lang, ArrayList subject_ide){
+    MainRowAdapter(Activity activity, Context context, ArrayList subject_id, ArrayList subject_name,
+                   ArrayList subject_lang, ArrayList subject_ide){
         this.activity = activity;
         this.context = context;
         this.subject_id = subject_id;
@@ -34,14 +34,14 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
     @NonNull
     @Override
-    public CustomAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public MainRowAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.row_layout, parent, false);
+        View view = inflater.inflate(R.layout.row_layout_main, parent, false);
         return new MyViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CustomAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MainRowAdapter.MyViewHolder holder, int position) {
         holder.subject_id_txt.setText((String.valueOf(subject_id.get(position))));
         holder.subject_name_txt.setText((String.valueOf(subject_name.get(position))));
         holder.subject_land_txt.setText((String.valueOf(subject_lang.get(position))));
