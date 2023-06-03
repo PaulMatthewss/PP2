@@ -14,61 +14,46 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainRowAdapter extends RecyclerView.Adapter<MainRowAdapter.MyViewHolder> {
-
-    private Context context;
-    private ArrayList subject_id, subject_name, subject_lang, subject_ide;
-
-    Activity activity;
-
-    MainRowAdapter(Activity activity, Context context, ArrayList subject_id, ArrayList subject_name,
-                   ArrayList subject_lang, ArrayList subject_ide){
-        this.activity = activity;
-        this.context = context;
-        this.subject_id = subject_id;
-        this.subject_name = subject_name;
-        this.subject_lang = subject_lang;
-        this.subject_ide = subject_ide;
-    }
+    private List<Subject> subjects = new ArrayList<>();
 
     @NonNull
     @Override
     public MainRowAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.row_layout_main, parent, false);
+        View view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.row_layout_main, parent, false);
         return new MyViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MainRowAdapter.MyViewHolder holder, int position) {
-        holder.subject_id_txt.setText((String.valueOf(subject_id.get(position))));
-        holder.subject_name_txt.setText((String.valueOf(subject_name.get(position))));
-        holder.subject_land_txt.setText((String.valueOf(subject_lang.get(position))));
-        holder.subject_ide_txt.setText((String.valueOf(subject_ide.get(position))));
+        Subject currentSubject = subjects.get(position);
+        holder.subject_id_txt.setText(String.valueOf(currentSubject.getSid()));
+        holder.subject_name_txt.setText(currentSubject.getName());
+        holder.subject_land_txt.setText(currentSubject.getLang());
+        holder.subject_ide_txt.setText(currentSubject.getIde());
         holder.update_button.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                Intent intent = new Intent(context, UpdateSubjectActivity.class);
-                intent.putExtra("id", String.valueOf(subject_id.get(position)));
-                intent.putExtra("name", String.valueOf(subject_name.get(position)));
-                intent.putExtra("lang", String.valueOf(subject_lang.get(position)));
-                intent.putExtra("ide", String.valueOf(subject_ide.get(position)));
-                activity.startActivityForResult(intent, 1);
             }
         });
         holder.row_element.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, GroupsActivity.class);
-                activity.startActivity(intent);
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return subject_id.size();
+        return subjects.size();
+    }
+
+    public void setSubjects(List<Subject> subjects){
+        this.subjects = subjects;
+        notifyDataSetChanged();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {

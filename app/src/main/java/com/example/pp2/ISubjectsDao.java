@@ -1,23 +1,24 @@
 package com.example.pp2;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import java.util.List;
 
 @Dao
 public interface ISubjectsDao {
     @Query("SELECT * FROM subjects")
-    List<Subjects> getAll();
-
-    @Query("SELECT * FROM subjects WHERE sid IN (:subjectsIds)")
-    List<Subjects> loadAllByIds(int[] subjectsIds);
+    LiveData<List<Subject>> getAll();
 
     @Insert
-    void insertAll(Subjects... subjects);
+    void insertSubject(Subject subject);
+    @Update
+    void updateSubject(Subject subject);
 
     @Delete
-    void delete(Subjects subject);
+    void deleteSubject(Subject subject);
 }

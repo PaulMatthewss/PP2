@@ -56,8 +56,6 @@ public class UpdateSubjectActivity extends AppCompatActivity {
         Update_Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                App_Database app_db = new App_Database(UpdateSubjectActivity.this);
-                app_db.updateSubject(id, name, lang, ide);
             }
         });
     }

@@ -1,6 +1,7 @@
 package com.example.pp2;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +10,9 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
+
+import java.util.List;
 
 public class AddSubjectActivity extends AppCompatActivity {
 
@@ -44,6 +48,10 @@ public class AddSubjectActivity extends AppCompatActivity {
         // Применяем адаптер к элементу spinner
         subject_ide.setAdapter(adapter_ide);
 
+        Subject subject = new Subject(subject_name.getText().toString().trim(),
+                subject_lang.getSelectedItem().toString().trim(),
+                subject_ide.getSelectedItem().toString().trim());
+
         Cancel_Button.setOnClickListener(view ->{
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
@@ -52,11 +60,15 @@ public class AddSubjectActivity extends AppCompatActivity {
         Submit_Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                App_Database stud_db = new App_Database(AddSubjectActivity.this);
-                stud_db.addSubject(subject_name.getText().toString().trim(),
-                        subject_lang.getSelectedItem().toString().trim(),
-                        subject_ide.getSelectedItem().toString().trim());
-
+                try {
+                    AppDatabase db = Room.databaseBuilder(getApplicationContext(),
+                            AppDatabase.class, "app_database").build();
+                    ISubjectsDao iSubjectsDao = db.iSubjectsDao();
+                    iSubjectsDao.insertSubject(subject);
+                    Toast.makeText(getApplicationContext(), "Запись добавлена", Toast.LENGTH_SHORT).show();
+                }catch (Exception e){
+                        Toast.makeText(getApplicationContext(), "Ошибка записи " + e, Toast.LENGTH_LONG).show();
+                }
             }
         });
     }

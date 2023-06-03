@@ -2,25 +2,27 @@ package com.example.pp2;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
 
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     Button Add_Button;
     RecyclerView recyclerView;
-    App_Database app_db;
-    ArrayList<String> subject_id, subject_name, subject_lang, subject_ide;
     MainRowAdapter mainRowAdapter;
+    private SubjectViewModel subjectViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,38 +40,24 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        app_db = new App_Database(MainActivity.this);
-        subject_id = new ArrayList<>();
-        subject_name = new ArrayList<>();
-        subject_lang = new ArrayList<>();
-        subject_ide = new ArrayList<>();
-
-        storeDataInArrays();
-
-        mainRowAdapter = new MainRowAdapter(MainActivity.this, this, subject_id, subject_name, subject_lang, subject_ide);
-        recyclerView.setAdapter(mainRowAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+        recyclerView.setHasFixedSize(true);
+        mainRowAdapter = new MainRowAdapter();
+        recyclerView.setAdapter(mainRowAdapter);
+        subjectViewModel = new ViewModelProvider(this).get(SubjectViewModel.class);
+        subjectViewModel.getAllSubjects().observe(this, new Observer<List<Subject>>() {
+            @Override
+            public void onChanged(List<Subject> subjects) {
+                mainRowAdapter.setSubjects(subjects);
+            }
+        });
     }
 
-    @Override
+    /*@Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == 1){
             recreate();
         }
-    }
-
-    void storeDataInArrays(){
-        Cursor cursor = app_db.readAllData();
-        if (cursor.getCount() == 0){
-            Toast.makeText(this, "Нет данных", Toast.LENGTH_SHORT).show();
-        }else{
-            while (cursor.moveToNext()){
-                subject_id.add(cursor.getString(0));
-                subject_name.add(cursor.getString(1));
-                subject_lang.add(cursor.getString(2));
-                subject_ide.add(cursor.getString(3));
-            }
-        }
-    }
+    }*/
 }

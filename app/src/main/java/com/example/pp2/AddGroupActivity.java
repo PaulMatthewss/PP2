@@ -43,9 +43,6 @@ public class AddGroupActivity extends AppCompatActivity {
         Submit_Button_AddGroup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                App_Database app_db = new App_Database(AddGroupActivity.this);
-                app_db.addGroup(group_name.getSelectedItem().toString().trim(),
-                        year.getText().toString().trim());
 
             }
         });
