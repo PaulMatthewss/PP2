@@ -15,6 +15,12 @@ import android.widget.Toast;
 import java.util.List;
 
 public class AddSubjectActivity extends AppCompatActivity {
+    public static final String EXTRA_NAME =
+            "com.example.pp2.EXTRA_NAME";
+    public static final String EXTRA_LANG =
+            "com.example.pp2.EXTRA_LANG";
+    public static final String EXTRA_IDE =
+            "com.example.pp2.EXTRA_IDE";
 
     Button Cancel_Button, Submit_Button;
     Spinner subject_lang, subject_ide;
@@ -48,10 +54,6 @@ public class AddSubjectActivity extends AppCompatActivity {
         // Применяем адаптер к элементу spinner
         subject_ide.setAdapter(adapter_ide);
 
-        Subject subject = new Subject(subject_name.getText().toString().trim(),
-                subject_lang.getSelectedItem().toString().trim(),
-                subject_ide.getSelectedItem().toString().trim());
-
         Cancel_Button.setOnClickListener(view ->{
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
@@ -60,16 +62,25 @@ public class AddSubjectActivity extends AppCompatActivity {
         Submit_Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                try {
-                    AppDatabase db = Room.databaseBuilder(getApplicationContext(),
-                            AppDatabase.class, "app_database").build();
-                    ISubjectsDao iSubjectsDao = db.iSubjectsDao();
-                    iSubjectsDao.insertSubject(subject);
-                    Toast.makeText(getApplicationContext(), "Запись добавлена", Toast.LENGTH_SHORT).show();
-                }catch (Exception e){
-                        Toast.makeText(getApplicationContext(), "Ошибка записи " + e, Toast.LENGTH_LONG).show();
-                }
+                saveSubject();
             }
         });
+    }
+    private void saveSubject(){
+        if(subject_name.getText().toString().trim().isEmpty() ||
+                subject_lang.getSelectedItem().toString().trim().isEmpty() ||
+                subject_ide.getSelectedItem().toString().trim().isEmpty()){
+            Toast.makeText(this, "Пожалуйста введите данные", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        String name = subject_name.getText().toString().trim();
+        String lang = subject_lang.getSelectedItem().toString().trim();
+        String ide = subject_ide.getSelectedItem().toString().trim();
+        Intent data = new Intent();
+        data.putExtra(EXTRA_NAME, name);
+        data.putExtra(EXTRA_LANG, lang);
+        data.putExtra(EXTRA_IDE, ide);
+        setResult(RESULT_OK, data);
+        finish();
     }
 }

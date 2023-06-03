@@ -29,22 +29,6 @@ public abstract class AppDatabase extends RoomDatabase {
         @Override
         public void onCreate(@NonNull SupportSQLiteDatabase db) {
             super.onCreate(db);
-            new PopulateDBAsyncTask(instance).execute();
         }
     };
-    private static class PopulateDBAsyncTask extends AsyncTask<Void, Void, Void>{
-        private  ISubjectsDao subjectsDao;
-
-        private PopulateDBAsyncTask(AppDatabase db){
-            subjectsDao = db.iSubjectsDao();
-        }
-
-        @Override
-        protected Void doInBackground(Void... voids) {
-            subjectsDao.insertSubject(new Subject("Разработка мобильных приложений", "Java", "Android Studio"));
-            subjectsDao.insertSubject(new Subject("Разработка игр", "С#", "Visual Studio"));
-            subjectsDao.insertSubject(new Subject("Веб разработка", "Php", "VS Code"));
-            return null;
-        }
-    }
 }

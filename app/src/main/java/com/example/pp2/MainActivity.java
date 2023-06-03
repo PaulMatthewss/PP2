@@ -19,6 +19,8 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final int ADD_SUBJECT_REQUEST = 1;
+
     Button Add_Button;
     RecyclerView recyclerView;
     MainRowAdapter mainRowAdapter;
@@ -36,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, AddSubjectActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent, ADD_SUBJECT_REQUEST);
             }
         });
 
@@ -53,11 +55,20 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    /*@Override
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == 1){
+        if(requestCode == ADD_SUBJECT_REQUEST && resultCode == RESULT_OK){
+            String name = data.getStringExtra(AddSubjectActivity.EXTRA_NAME);
+            String lang = data.getStringExtra(AddSubjectActivity.EXTRA_LANG);
+            String ide = data.getStringExtra(AddSubjectActivity.EXTRA_IDE);
+            Subject subject = new Subject(name, lang, ide);
+            subjectViewModel.insert(subject);
             recreate();
+            Toast.makeText(this, "Запись добавлена", Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(this, "Ошибка записи", Toast.LENGTH_SHORT).show();
+
         }
-    }*/
+    }
 }
