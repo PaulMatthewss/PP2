@@ -14,58 +14,62 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class StudentRowAdapter extends RecyclerView.Adapter<StudentRowAdapter.MyViewHolder>{
 
-    Activity activity;
-    private Context context;
-    private ArrayList student_id, student_name, student_gender;
-
-    StudentRowAdapter(Activity activity, Context context, ArrayList student_id,
-                    ArrayList student_name, ArrayList student_gender){
-        this.activity = activity;
-        this.context = context;
-        this.student_id = student_id;
-        this.student_name = student_name;
-        this.student_gender = student_gender;
-    }
-
+    private List<Student> students = new ArrayList<>();
+    private OnItemClickListener listener;
 
     @NonNull
     @Override
     public StudentRowAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.row_layout_student, parent, false);
-        return new StudentRowAdapter.MyViewHolder(view);
+        View view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.row_layout_student, parent, false);
+        return new MyViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull StudentRowAdapter.MyViewHolder holder, int position) {
-        holder.student_id_txt.setText((String.valueOf(student_id.get(position))));
-        holder.student_name_txt.setText((String.valueOf(student_name.get(position))));
-        holder.student_gender_txt.setText((String.valueOf(student_gender.get(position))));
-        holder.row_element.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-            }
-        });
+        Student currentStudent = students.get(position);
+        holder.student_name_txt.setText(String.valueOf(currentStudent.getFio()));
+        holder.student_num_txt.setText(String.valueOf(currentStudent.getStud_num()));
     }
 
     @Override
     public int getItemCount() {
-        return student_id.size();
+        return students.size();
+    }
+    public void setStudents(List<Student> students){
+        this.students = students;
+        notifyDataSetChanged();
     }
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView student_id_txt, student_name_txt, student_gender_txt;
+        TextView student_id_txt, student_name_txt, student_num_txt;
         Button update_button;
         LinearLayout row_element;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             student_id_txt = itemView.findViewById(R.id.student_id_txt);
             student_name_txt = itemView.findViewById(R.id.student_name_txt);
-            student_gender_txt = itemView.findViewById(R.id.student_gender_txt);
+            student_num_txt = itemView.findViewById(R.id.student_num_txt);
             update_button = itemView.findViewById(R.id.update_button);
             row_element = itemView.findViewById(R.id.row_element);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int position = getAdapterPosition();
+                    if(listener != null && position != RecyclerView.NO_POSITION){
+                        listener.onItemClick(students.get(position));
+                    }
+                }
+            });
         }
+    }
+    public interface  OnItemClickListener{
+        void onItemClick(Student student);
+    }
+    public void setOnItemClickListener(OnItemClickListener listener){
+        this.listener = listener;
     }
 }

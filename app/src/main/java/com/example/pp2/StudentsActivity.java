@@ -2,6 +2,8 @@ package com.example.pp2;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -9,15 +11,18 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class StudentsActivity extends AppCompatActivity {
 
+    public static final int ADD_STUDENT_REQUEST = 1;
     Button add_student_button, button_back;
     RecyclerView recyclerView_students;
-    ArrayList<String> student_id, student_name, student_gender;
     StudentRowAdapter studentRowAdapter;
+    private StudentViewModel studentViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,27 +44,40 @@ public class StudentsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(StudentsActivity.this, AddStudentActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent, ADD_STUDENT_REQUEST);
             }
         });
-
-        //app_db = new App_Database(MainActivity.this);
-        student_id = new ArrayList<>();
-        student_name = new ArrayList<>();
-        student_gender = new ArrayList<>();
-
-        //storeDataInArrays();
-
-        studentRowAdapter = new StudentRowAdapter(StudentsActivity.this, this, student_id,
-                student_name, student_gender);
-        recyclerView_students.setAdapter(studentRowAdapter);
         recyclerView_students.setLayoutManager(new LinearLayoutManager(StudentsActivity.this));
+        recyclerView_students.setHasFixedSize(true);
+        studentRowAdapter = new StudentRowAdapter();
+        recyclerView_students.setAdapter(studentRowAdapter);
+        studentViewModel = new ViewModelProvider(this).get(StudentViewModel.class);
+        studentViewModel.getAllStudents().observe(this, new Observer<List<Student>>() {
+            @Override
+            public void onChanged(List<Student> students) {
+                studentRowAdapter.setStudents(students);
+            }
+        });
+        studentRowAdapter.setOnItemClickListener(new StudentRowAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Student student) {
+
+            }
+        });
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == 1){
+        if(requestCode == ADD_STUDENT_REQUEST && resultCode == RESULT_OK){
+            String fio = data.getStringExtra(AddStudentActivity.EXTRA_FIO);
+            int student_number = data.getIntExtra(AddStudentActivity.EXTRA_STUD_NUM, 0);
+            Student student = new Student(fio, student_number);
+            studentViewModel.insert(student);
             recreate();
+            Toast.makeText(this, "Запись добавлена", Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(this, "Ошибка записи", Toast.LENGTH_SHORT).show();
+
         }
     }
 }

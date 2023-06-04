@@ -9,14 +9,17 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 public class AddStudentActivity extends AppCompatActivity {
 
+    public static final String EXTRA_FIO =
+            "com.example.pp2.EXTRA_FIO";
+    public static final String EXTRA_STUD_NUM =
+            "com.example.pp2.EXTRA_STUD_NUM";
     Button Cancel_Button_add_student, Submit_Button_add_student;
-    Spinner gender;
 
-    EditText fio_input;
-    String[] genders = {"М", "Ж"};
+    EditText fio_input, stud_num;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,14 +29,7 @@ public class AddStudentActivity extends AppCompatActivity {
         Cancel_Button_add_student = findViewById(R.id.Cancel_Button_add_student);
         Submit_Button_add_student = findViewById(R.id.Submit_Button_add_student);
         fio_input = findViewById(R.id.fio_input);
-        gender = findViewById(R.id.gender);
-
-        // Создаем адаптер ArrayAdapter с помощью массива строк и стандартной разметки элемета spinner
-        ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, genders);
-        // Определяем разметку для использования при выборе элемента
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        // Применяем адаптер к элементу spinner
-        gender.setAdapter(adapter);
+        stud_num = findViewById(R.id.stud_num);
 
         Cancel_Button_add_student.setOnClickListener(view ->{
             Intent intent = new Intent(this, StudentsActivity.class);
@@ -43,8 +39,26 @@ public class AddStudentActivity extends AppCompatActivity {
         Submit_Button_add_student.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                saveSubject();
             }
         });
+    }
+    private void saveSubject(){
+        if(fio_input.getText().toString().trim().isEmpty() ||
+                stud_num.getText().toString().trim().isEmpty()){
+            Toast.makeText(this, "Пожалуйста введите данные", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        try{
+            String fio = fio_input.getText().toString().trim();
+            int num = Integer.parseInt(stud_num.getText().toString().trim());
+            Intent data = new Intent();
+            data.putExtra(EXTRA_FIO, fio);
+            data.putExtra(EXTRA_STUD_NUM, num);
+            setResult(RESULT_OK, data);
+            finish();
+        }catch (Exception e){
+            Toast.makeText(this, "Ошибка: " + e, Toast.LENGTH_SHORT).show();
+        }
     }
 }

@@ -10,13 +10,13 @@ import androidx.room.Update;
 import java.util.List;
 
 @Dao
-public interface ISubjectsDao {
-    @Query("SELECT * FROM subjects")
-    LiveData<List<Subject>> getAll();
+public interface IStudentDao {
+    @Query("SELECT * FROM students")
+    LiveData<List<Student>> getAllStudents();
     @Insert
-    void insertSubject(Subject subject);
+    void insertStudent(Student student);
     @Update
-    void updateSubject(Subject subject);
+    void updateStudent(Student student);
     @Delete
-    void deleteSubject(Subject subject);
+    void deleteStudent(Student student);
 }
