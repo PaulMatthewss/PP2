@@ -18,6 +18,7 @@ import java.util.List;
 
 public class MainRowAdapter extends RecyclerView.Adapter<MainRowAdapter.MyViewHolder> {
     private List<Subject> subjects = new ArrayList<>();
+    private OnItemClickListener listener;
 
     @NonNull
     @Override
@@ -34,16 +35,6 @@ public class MainRowAdapter extends RecyclerView.Adapter<MainRowAdapter.MyViewHo
         holder.subject_name_txt.setText(currentSubject.getName());
         holder.subject_land_txt.setText(currentSubject.getLang());
         holder.subject_ide_txt.setText(currentSubject.getIde());
-        holder.update_button.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-            }
-        });
-        holder.row_element.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-            }
-        });
     }
 
     @Override
@@ -68,6 +59,21 @@ public class MainRowAdapter extends RecyclerView.Adapter<MainRowAdapter.MyViewHo
             subject_ide_txt = itemView.findViewById(R.id.subject_ide_txt);
             update_button = itemView.findViewById(R.id.update_button);
             row_element = itemView.findViewById(R.id.row_element);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int position = getAdapterPosition();
+                    if(listener != null && position != RecyclerView.NO_POSITION){
+                        listener.onItemClick(subjects.get(position));
+                    }
+                }
+            });
         }
+    }
+    public interface  OnItemClickListener{
+        void onItemClick(Subject subject);
+    }
+    public void setOnItemClickListener(OnItemClickListener listener){
+        this.listener = listener;
     }
 }

@@ -1,9 +1,11 @@
 package com.example.pp2;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
@@ -51,6 +53,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onChanged(List<Subject> subjects) {
                 mainRowAdapter.setSubjects(subjects);
+            }
+        });
+        mainRowAdapter.setOnItemClickListener(new MainRowAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Subject subject) {
+                Intent intent = new Intent(MainActivity.this, GroupsActivity.class);
+                startActivity(intent);
             }
         });
     }

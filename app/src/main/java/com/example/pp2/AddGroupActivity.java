@@ -8,13 +8,19 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.NumberPicker;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 public class AddGroupActivity extends AppCompatActivity {
 
+    public static final String EXTRA_NAME =
+            "com.example.pp2.EXTRA_NAME";
+    public static final String EXTRA_DATE =
+            "com.example.pp2.EXTRA_DATE";
     Button Cancel_Button_AddGroup, Submit_Button_AddGroup;
     Spinner group_name;
-    EditText year;
+    NumberPicker year;
 
     private final String[] groups = {"1415-ИСО", "1425-ИСО", "1435-ИСО"};
 
@@ -35,6 +41,9 @@ public class AddGroupActivity extends AppCompatActivity {
         // Применяем адаптер к элементу spinner
         group_name.setAdapter(adapter);
 
+        year.setMinValue(2000);
+        year.setMaxValue(3000);
+
         Cancel_Button_AddGroup.setOnClickListener(view ->{
             Intent intent = new Intent(this, GroupsActivity.class);
             startActivity(intent);
@@ -43,8 +52,21 @@ public class AddGroupActivity extends AppCompatActivity {
         Submit_Button_AddGroup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                saveSubject();
             }
         });
+    }
+    private void saveSubject(){
+        if(group_name.getSelectedItem().toString().trim().isEmpty()){
+            Toast.makeText(this, "Пожалуйста выберите группу", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        String name = group_name.getSelectedItem().toString().trim();
+        int date = year.getValue();
+        Intent data = new Intent();
+        data.putExtra(EXTRA_NAME, name);
+        data.putExtra(EXTRA_DATE, date);
+        setResult(RESULT_OK, data);
+        finish();
     }
 }

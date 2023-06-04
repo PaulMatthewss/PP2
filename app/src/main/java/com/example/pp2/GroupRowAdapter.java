@@ -1,8 +1,5 @@
 package com.example.pp2;
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,48 +11,42 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class GroupRowAdapter extends RecyclerView.Adapter<GroupRowAdapter.MyViewHolder>{
 
-    Activity activity;
-    private Context context;
-    private ArrayList group_id, group_name, group_year;
+    private List<Group> groups = new ArrayList<>();
 
-    GroupRowAdapter(Activity activity, Context context, ArrayList group_id,
-                    ArrayList group_name, ArrayList group_year){
-        this.activity = activity;
-        this.context = context;
-        this.group_id = group_id;
-        this.group_name = group_name;
-        this.group_year = group_year;
-    }
+    private List<SubjectGroup> sub_groups = new ArrayList<>();
 
+    private OnItemClickListener listener;
 
     @NonNull
     @Override
     public GroupRowAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.row_layout_group, parent, false);
-        return new GroupRowAdapter.MyViewHolder(view);
+        View view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.row_layout_group, parent, false);
+        return new MyViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull GroupRowAdapter.MyViewHolder holder, int position) {
-        holder.group_id_txt.setText((String.valueOf(group_id.get(position))));
-        holder.group_name_txt.setText((String.valueOf(group_name.get(position))));
-        holder.group_year_txt.setText((String.valueOf(group_year.get(position))));
-        holder.row_element.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(context, StudentsActivity.class);
-                activity.startActivity(intent);
-            }
-        });
+        Group currentGroup = groups.get(position);
+        holder.group_name_txt.setText(currentGroup.getGroup_name());
+        holder.group_year_txt.setText(String.valueOf(currentGroup.getGroup_year()));
     }
 
     @Override
     public int getItemCount() {
-        return group_id.size();
+        return groups.size();
+    }
+    public void setGroups(List<SubjectGroup> sub_groups){
+        this.sub_groups = sub_groups;
+        notifyDataSetChanged();
+    }
+    public void setAllGroups(List<Group> groups){
+        this.groups = groups;
+        notifyDataSetChanged();
     }
     public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView group_id_txt, group_name_txt, group_year_txt;
@@ -68,6 +59,21 @@ public class GroupRowAdapter extends RecyclerView.Adapter<GroupRowAdapter.MyView
             group_year_txt = itemView.findViewById(R.id.group_year_txt);
             update_button = itemView.findViewById(R.id.update_button);
             row_element = itemView.findViewById(R.id.row_element);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int position = getAdapterPosition();
+                    if(listener != null && position != RecyclerView.NO_POSITION){
+                        listener.onItemClick(groups.get(position));
+                    }
+                }
+            });
         }
+    }
+    public interface  OnItemClickListener{
+        void onItemClick(Group group);
+    }
+    public void setOnItemClickListener(OnItemClickListener listener){
+        this.listener = listener;
     }
 }
