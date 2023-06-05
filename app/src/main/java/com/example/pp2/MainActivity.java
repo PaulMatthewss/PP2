@@ -20,6 +20,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+    public static final String SUB_TO_PARSE =
+            "com.example.pp2.SUB_TO_PARSE";
 
     public static final int ADD_SUBJECT_REQUEST = 1;
 
@@ -59,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(Subject subject) {
                 Intent intent = new Intent(MainActivity.this, GroupsActivity.class);
+                intent.putExtra(SUB_TO_PARSE, subject.getName());
                 startActivity(intent);
             }
         });

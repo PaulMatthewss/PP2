@@ -17,6 +17,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GroupsActivity extends AppCompatActivity {
+    public static final String SUB_TO_PARSE =
+            "com.example.pp2.SUB_TO_PARSE";
+    public static final String GROUP_TO_PARSE =
+            "com.example.pp2.GROUP_TO_PARSE";
     public static final int ADD_GROUP_REQUEST = 1;
     Button add_group_button, button_back;
     RecyclerView recyclerView_groups;
@@ -31,6 +35,8 @@ public class GroupsActivity extends AppCompatActivity {
         add_group_button = findViewById(R.id.AddGroup_Button);
         button_back = findViewById(R.id.Button_Back);
         recyclerView_groups = findViewById(R.id.recyclerView_groups);
+        String subject_name = getIntent().getStringExtra(MainActivity.SUB_TO_PARSE);
+        setTitle("Журнал: " + subject_name);
 
         add_group_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,6 +69,8 @@ public class GroupsActivity extends AppCompatActivity {
             @Override
             public void onItemClick(Group group) {
                 Intent intent = new Intent(GroupsActivity.this, StudentsActivity.class);
+                intent.putExtra(SUB_TO_PARSE, subject_name);
+                intent.putExtra(GROUP_TO_PARSE, group.getGroup_name());
                 startActivity(intent);
             }
         });

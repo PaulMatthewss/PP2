@@ -17,6 +17,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StudentsActivity extends AppCompatActivity {
+    public static final String SUB_TO_PARSE =
+            "com.example.pp2.SUB_TO_PARSE";
+    public static final String GROUP_TO_PARSE =
+            "com.example.pp2.GROUP_TO_PARSE";
+    public static final String STUD_TO_PARSE =
+            "com.example.pp2.STUD_TO_PARSE";
 
     public static final int ADD_STUDENT_REQUEST = 1;
     Button add_student_button, button_back;
@@ -32,11 +38,15 @@ public class StudentsActivity extends AppCompatActivity {
         recyclerView_students = findViewById(R.id.recyclerView_students);
         add_student_button = findViewById(R.id.AddStudent_Button);
         button_back = findViewById(R.id.Button_Back);
+        String subject_name = getIntent().getStringExtra(GroupsActivity.SUB_TO_PARSE);
+        String group_name = getIntent().getStringExtra(GroupsActivity.GROUP_TO_PARSE);
+        setTitle("Журнал: " + subject_name + ", " + group_name);
 
         button_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(StudentsActivity.this, GroupsActivity.class);
+                intent.putExtra(SUB_TO_PARSE, subject_name);
                 startActivity(intent);
             }
         });
@@ -61,7 +71,11 @@ public class StudentsActivity extends AppCompatActivity {
         studentRowAdapter.setOnItemClickListener(new StudentRowAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Student student) {
-
+                Intent intent = new Intent(StudentsActivity.this, LessonsActivity.class);
+                intent.putExtra(SUB_TO_PARSE, subject_name);
+                intent.putExtra(GROUP_TO_PARSE, group_name);
+                intent.putExtra(STUD_TO_PARSE, String.valueOf(student.getStud_num()));
+                startActivity(intent);
             }
         });
     }
