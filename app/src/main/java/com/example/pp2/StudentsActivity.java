@@ -54,6 +54,8 @@ public class StudentsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(StudentsActivity.this, AddStudentActivity.class);
+                intent.putExtra(SUB_TO_PARSE, subject_name);
+                intent.putExtra(GROUP_TO_PARSE, group_name);
                 startActivityForResult(intent, ADD_STUDENT_REQUEST);
             }
         });

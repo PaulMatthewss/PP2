@@ -12,6 +12,10 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 public class AddStudentActivity extends AppCompatActivity {
+    public static final String SUB_TO_PARSE =
+            "com.example.pp2.SUB_TO_PARSE";
+    public static final String GROUP_TO_PARSE =
+            "com.example.pp2.GROUP_TO_PARSE";
 
     public static final String EXTRA_FIO =
             "com.example.pp2.EXTRA_FIO";
@@ -30,9 +34,13 @@ public class AddStudentActivity extends AppCompatActivity {
         Submit_Button_add_student = findViewById(R.id.Submit_Button_add_student);
         fio_input = findViewById(R.id.fio_input);
         stud_num = findViewById(R.id.stud_num);
+        String subject_name = getIntent().getStringExtra(StudentsActivity.SUB_TO_PARSE);
+        String group_name = getIntent().getStringExtra(StudentsActivity.GROUP_TO_PARSE);
 
         Cancel_Button_add_student.setOnClickListener(view ->{
             Intent intent = new Intent(this, StudentsActivity.class);
+            intent.putExtra(SUB_TO_PARSE, subject_name);
+            intent.putExtra(GROUP_TO_PARSE, group_name);
             startActivity(intent);
         });
 

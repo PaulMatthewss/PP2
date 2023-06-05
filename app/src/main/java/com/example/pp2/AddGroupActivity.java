@@ -13,6 +13,8 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 public class AddGroupActivity extends AppCompatActivity {
+    public static final String SUB_TO_PARSE =
+            "com.example.pp2.SUB_TO_PARSE";
 
     public static final String EXTRA_NAME =
             "com.example.pp2.EXTRA_NAME";
@@ -33,6 +35,7 @@ public class AddGroupActivity extends AppCompatActivity {
         Submit_Button_AddGroup = findViewById(R.id.Submit_Button_AddGroup);
         group_name = findViewById(R.id.group_name);
         year = findViewById(R.id.year);
+        String subject_name = getIntent().getStringExtra(GroupsActivity.SUB_TO_PARSE);
 
         // Создаем адаптер ArrayAdapter с помощью массива строк и стандартной разметки элемета spinner
         ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, groups);
@@ -46,6 +49,7 @@ public class AddGroupActivity extends AppCompatActivity {
 
         Cancel_Button_AddGroup.setOnClickListener(view ->{
             Intent intent = new Intent(this, GroupsActivity.class);
+            intent.putExtra(SUB_TO_PARSE, subject_name);
             startActivity(intent);
         });
 

@@ -42,6 +42,7 @@ public class GroupsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(GroupsActivity.this, AddGroupActivity.class);
+                intent.putExtra(SUB_TO_PARSE, subject_name);
                 startActivityForResult(intent, ADD_GROUP_REQUEST);
             }
         });
