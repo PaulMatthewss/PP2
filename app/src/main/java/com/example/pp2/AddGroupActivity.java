@@ -24,7 +24,7 @@ public class AddGroupActivity extends AppCompatActivity {
     Spinner group_name;
     NumberPicker year;
 
-    private final String[] groups = {"1415-ИСО", "1425-ИСО", "1435-ИСО"};
+    private final String[] groups = {"1415-ИСо", "1425-ИСо", "1435-ИСо"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

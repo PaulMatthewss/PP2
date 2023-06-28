@@ -16,20 +16,20 @@ public class StudentRepository {
     }
 
     public void insert(Student student){
-        new StudentRepository.InsertSubjectAsyncTask(studentDao).execute(student);
+        new StudentRepository.InsertStudentAsyncTask(studentDao).execute(student);
     }
     public void update(Student student){
-        new StudentRepository.UpdateSubjectAsyncTask(studentDao).execute(student);
+        new StudentRepository.UpdateStudentAsyncTask(studentDao).execute(student);
     }
     public void delete(Student student){
-        new StudentRepository.DeleteSubjectAsyncTask(studentDao).execute(student);
+        new StudentRepository.DeleteStudentAsyncTask(studentDao).execute(student);
     }
     public LiveData<List<Student>> getAllStudent(){
         return allStudents;
     }
-    private static class InsertSubjectAsyncTask extends AsyncTask<Student, Void, Void> {
+    private static class InsertStudentAsyncTask extends AsyncTask<Student, Void, Void> {
         private  IStudentDao studentDao;
-        private  InsertSubjectAsyncTask(IStudentDao studentDao){
+        private  InsertStudentAsyncTask(IStudentDao studentDao){
             this.studentDao = studentDao;
         }
         @Override
@@ -38,9 +38,9 @@ public class StudentRepository {
             return null;
         }
     }
-    private static class UpdateSubjectAsyncTask extends AsyncTask<Student, Void, Void>{
+    private static class UpdateStudentAsyncTask extends AsyncTask<Student, Void, Void>{
         private  IStudentDao studentDao;
-        private  UpdateSubjectAsyncTask(IStudentDao studentDao){
+        private  UpdateStudentAsyncTask(IStudentDao studentDao){
             this.studentDao = studentDao;
         }
         @Override
@@ -49,9 +49,9 @@ public class StudentRepository {
             return null;
         }
     }
-    private static class DeleteSubjectAsyncTask extends AsyncTask<Student, Void, Void>{
+    private static class DeleteStudentAsyncTask extends AsyncTask<Student, Void, Void>{
         private  IStudentDao studentDao;
-        private  DeleteSubjectAsyncTask(IStudentDao studentDao){
+        private  DeleteStudentAsyncTask(IStudentDao studentDao){
             this.studentDao = studentDao;
         }
         @Override
