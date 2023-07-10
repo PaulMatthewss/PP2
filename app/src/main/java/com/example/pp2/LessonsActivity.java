@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.List;
@@ -26,6 +27,7 @@ public class LessonsActivity extends AppCompatActivity {
     Button Add_Button, Back_Button;
     RecyclerView recyclerView;
     LessonRowAdapter lessonRowAdapter;
+    TextView accepted_works, all_grades;
     private LessonViewModel lessonViewModel;
 
     @Override
@@ -35,6 +37,8 @@ public class LessonsActivity extends AppCompatActivity {
         Add_Button = findViewById(R.id.Add_Button);
         Back_Button = findViewById(R.id.Button_Back);
         recyclerView = findViewById(R.id.recyclerView);
+        accepted_works = findViewById(R.id.accepted_works);
+        all_grades = findViewById(R.id.all_grades);
         String subject_name = getIntent().getStringExtra(StudentsActivity.SUB_TO_PARSE);
         String group_name = getIntent().getStringExtra(StudentsActivity.GROUP_TO_PARSE);
         String student_number = getIntent().getStringExtra(StudentsActivity.STUD_TO_PARSE);

@@ -8,31 +8,48 @@
     android:padding="15dp"
     tools:context=".GroupsActivity">
 
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/info_groups"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:textSize="18sp"/>
+        android:layout_height="match_parent"
+        android:padding="12dp"
+        android:layout_marginVertical="4dp">
 
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/info_groups"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/button_addgroup"
-        android:id="@+id/AddGroup_Button"/>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/button_cancel"
-        android:id="@+id/Button_Back"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView_groups"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@+id/textView3"
+            app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView_groups"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <Button
+                android:id="@+id/AddGroup_Button"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/button_addgroup" />
+
+            <Button
+                android:id="@+id/Button_Back"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/button_cancel" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>
