@@ -9,10 +9,23 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.List;
 
@@ -55,6 +68,10 @@ public class LessonsActivity extends AppCompatActivity {
         Add_Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String[] web_data = get_data_from_web_service(group_name);
+                for (int i = 0; i < web_data.length; i++){ //for loop to print the array
+                    Log.d("Element" + i, web_data[i]);
+                }
                 Intent intent = new Intent(LessonsActivity.this, AddLessonActivity.class);
                 intent.putExtra(SUB_TO_PARSE, subject_name);
                 intent.putExtra(GROUP_TO_PARSE, group_name);
@@ -74,6 +91,13 @@ public class LessonsActivity extends AppCompatActivity {
             }
         });
     }
+
+    private String[] get_data_from_web_service(String group_name) {
+        String url = "https://digitalacademy.syktsu.ru/common.asmx?op=getScheduleGroup?group_name=" + group_name + "&week_offset=0";
+        String[] arr = {"дефолтное данное"};
+        return arr;
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
