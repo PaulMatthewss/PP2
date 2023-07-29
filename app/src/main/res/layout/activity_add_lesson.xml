@@ -82,17 +82,37 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="20206969"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Оценка:"/>
 
-    <EditText
-        android:id="@+id/grade"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Оцените"
-        android:minHeight="48dp" />
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Работа зачтена:"/>
+
+        <CheckBox
+            android:id="@+id/lesson_checkBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Оценка:"/>
+
+        <EditText
+            android:id="@+id/grade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="н"
+            android:minHeight="48dp"
+            android:inputType="number"
+            android:enabled="false"/>
+
+    </LinearLayout>
 
 
     <LinearLayout

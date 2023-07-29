@@ -13,6 +13,8 @@ import java.util.List;
 public interface ILessonDao {
     @Query("SELECT * FROM lessons")
     LiveData<List<Lesson>> getAllLessons();
+    @Query("SELECT SUM(grade) FROM lessons WHERE grade is not null")
+    LiveData<Integer> getSum();
     @Insert
     void insertLesson(Lesson lesson);
     @Update

@@ -10,10 +10,12 @@ import java.util.List;
 public class LessonRepository {
     public ILessonDao lessonDao;
     private LiveData<List<Lesson>> allLessons;
+    private LiveData<Integer> sumLessonsGrades;
     public LessonRepository(Application application){
         AppDatabase database = AppDatabase.getInstance(application);
         lessonDao = database.iLessonDao();
         allLessons = lessonDao.getAllLessons();
+        sumLessonsGrades = lessonDao.getSum();
     }
     public void insert(Lesson lesson){
         new LessonRepository.InsertLessonAsyncTask(lessonDao).execute(lesson);
@@ -26,6 +28,9 @@ public class LessonRepository {
     }
     public LiveData<List<Lesson>> getAllLessons(){
         return allLessons;
+    }
+    public LiveData<Integer> getSum(){
+        return sumLessonsGrades;
     }
     private static class InsertLessonAsyncTask extends AsyncTask<Lesson, Void, Void> {
         private  ILessonDao lessonDao;

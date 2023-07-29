@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,14 +32,18 @@ public class AddLessonActivity extends AppCompatActivity {
             "com.example.pp2.EXTRA_LESSON_STUDENT";
     public static final String EXTRA_LESSON_GRADE =
             "com.example.pp2.EXTRA_LESSON_GRADE";
+    public static final String EXTRA_LESSON_CHECK =
+            "com.example.pp2.EXTRA_LESSON_CHECK";
     Button Cancel_Button, Submit_Button;
     EditText grade;
+    CheckBox lesson_checkBox;
     TextView lesson_num, lesson_type, lesson_date, lesson_subject, lesson_group, lesson_stud;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_lesson);
+        //connecting the elements
         lesson_num = findViewById(R.id.lesson_num);
         lesson_type = findViewById(R.id.lesson_type);
         lesson_date = findViewById(R.id.lesson_date);
@@ -46,14 +51,28 @@ public class AddLessonActivity extends AppCompatActivity {
         lesson_group = findViewById(R.id.lesson_group);
         lesson_stud = findViewById(R.id.lesson_stud);
         grade = findViewById(R.id.grade);
+        lesson_checkBox = findViewById(R.id.lesson_checkBox);
         Cancel_Button = findViewById(R.id.Cancel_Button);
         Submit_Button = findViewById(R.id.Submit_Button);
+        //parsing stuff
         String subject_name = getIntent().getStringExtra(LessonsActivity.SUB_TO_PARSE);
         String group_name = getIntent().getStringExtra(LessonsActivity.GROUP_TO_PARSE);
         String student_number = getIntent().getStringExtra(LessonsActivity.STUD_TO_PARSE);
         lesson_subject.setText(subject_name);
         lesson_group.setText(group_name);
         lesson_stud.setText(student_number);
+        //buttons
+        lesson_checkBox.setOnClickListener(view -> {
+            if(lesson_checkBox.isChecked()){
+                grade.setHint("Оцените");
+                grade.setEnabled(true);
+            }
+            if(!lesson_checkBox.isChecked()){
+                grade.setText("");
+                grade.setHint("н");
+                grade.setEnabled(false);
+            }
+        });
         Cancel_Button.setOnClickListener(view -> {
             Intent intent = new Intent(this, LessonsActivity.class);
             intent.putExtra(SUB_TO_PARSE, subject_name);
@@ -69,13 +88,14 @@ public class AddLessonActivity extends AppCompatActivity {
                     return;
                 }
                 try{
-                    int lesson_n = Integer.parseInt(lesson_num.getText().toString().trim());
+                    Integer lesson_n = Integer.parseInt(lesson_num.getText().toString().trim());
                     String lesson_t = lesson_type.getText().toString().trim();
                     String lesson_d = lesson_date.getText().toString().trim();
                     String lesson_s = lesson_subject.getText().toString().trim();
                     String lesson_g = lesson_group.getText().toString().trim();
-                    int lesson_st = Integer.parseInt(lesson_stud.getText().toString().trim());
-                    String g = grade.getText().toString().trim();
+                    Integer lesson_st = Integer.parseInt(lesson_stud.getText().toString().trim());
+                    Integer g = Integer.parseInt(grade.getText().toString().trim());
+                    boolean lesson_check = lesson_checkBox.isChecked();
                     Intent data = new Intent();
                     data.putExtra(SUB_TO_PARSE, subject_name);
                     data.putExtra(GROUP_TO_PARSE, group_name);
@@ -87,6 +107,7 @@ public class AddLessonActivity extends AppCompatActivity {
                     data.putExtra(EXTRA_LESSON_GROUP, lesson_g);
                     data.putExtra(EXTRA_LESSON_STUDENT, lesson_st);
                     data.putExtra(EXTRA_LESSON_GRADE, g);
+                    data.putExtra(EXTRA_LESSON_CHECK, lesson_check);
                     setResult(RESULT_OK, data);
                     finish();
                 }catch (Exception e){

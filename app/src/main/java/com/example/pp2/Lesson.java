@@ -7,15 +7,16 @@ import androidx.room.PrimaryKey;
 public class Lesson {
     @PrimaryKey(autoGenerate = true)
     private int les_id;
-    private int lesson_num;
+    private Integer lesson_num;
     private String lesson_type;
     private String lesson_date;
     private String subject;
     private String group;
-    private int student_num;
-    private String grade;
+    private Integer student_num;
+    private Integer grade;
+    private boolean is_accepted;
 
-    public Lesson(int lesson_num, String lesson_type, String lesson_date, String subject, String group, int student_num, String grade) {
+    public Lesson(Integer lesson_num, String lesson_type, String lesson_date, String subject, String group, Integer student_num, Integer grade, boolean is_accepted) {
         this.lesson_num = lesson_num;
         this.lesson_type = lesson_type;
         this.lesson_date = lesson_date;
@@ -23,6 +24,7 @@ public class Lesson {
         this.group = group;
         this.student_num = student_num;
         this.grade = grade;
+        this.is_accepted = is_accepted;
     }
 
     public void setLes_id(int les_id) {
@@ -33,7 +35,7 @@ public class Lesson {
         return les_id;
     }
 
-    public int getLesson_num() {
+    public Integer getLesson_num() {
         return lesson_num;
     }
     public String getLesson_type() {
@@ -52,11 +54,15 @@ public class Lesson {
         return group;
     }
 
-    public int getStudent_num() {
+    public Integer getStudent_num() {
         return student_num;
     }
 
-    public String getGrade() {
+    public Integer getGrade() {
         return grade;
+    }
+
+    public boolean isIs_accepted() {
+        return is_accepted;
     }
 }

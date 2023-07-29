@@ -21,6 +21,9 @@ import org.json.JSONObject;
 
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Retrofit;
+
 public class LessonsActivity extends AppCompatActivity {
     public static final String SUB_TO_PARSE =
             "com.example.pp2.SUB_TO_PARSE";
@@ -60,10 +63,10 @@ public class LessonsActivity extends AppCompatActivity {
         Add_Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String[] web_data = get_data_from_web_service(group_name);
+                /*String[] web_data = get_data_from_web_service(group_name);
                 for (int i = 0; i < web_data.length; i++){ //for loop to print the array
                     Log.d("Element" + i, web_data[i]);
-                }
+                }*/
                 Intent intent = new Intent(LessonsActivity.this, AddLessonActivity.class);
                 intent.putExtra(SUB_TO_PARSE, subject_name);
                 intent.putExtra(GROUP_TO_PARSE, group_name);
@@ -82,10 +85,23 @@ public class LessonsActivity extends AppCompatActivity {
                 lessonRowAdapter.setLessons(lessons);
             }
         });
+        /*lessonViewModel.getSum().observe(this, new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer integer) {
+                all_grades.setText(lessonViewModel.getSum().getValue());
+            }
+        });*/
     }
 
     private String[] get_data_from_web_service(String group_name) {
         String url = "https://digitalacademy.syktsu.ru/common.asmx?op=getScheduleGroup?group_name=" + group_name + "&week_offset=0";
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://digitalacademy.syktsu.ru/")
+                .build();
+
+        WebService service = retrofit.create(WebService.class);
+        Call<List<Lesson>> lessons = service.listLessons(group_name);
+        Log.d("Output", String.valueOf(lessons));
         String[] arr = {"дефолтное данное"};
         return arr;
     }
@@ -98,10 +114,11 @@ public class LessonsActivity extends AppCompatActivity {
             String lesson_date = data.getStringExtra(AddLessonActivity.EXTRA_LESSON_DATE);
             String lesson_subject = data.getStringExtra(AddLessonActivity.EXTRA_LESSON_SUBJECT);
             String lesson_group = data.getStringExtra(AddLessonActivity.EXTRA_LESSON_GROUP);
-            String grade = data.getStringExtra(AddLessonActivity.EXTRA_LESSON_GRADE);
-            int lesson_num = data.getIntExtra(AddLessonActivity.EXTRA_LESSON_NUM, 0);
-            int lesson_stud = data.getIntExtra(AddLessonActivity.EXTRA_LESSON_STUDENT, 0);
-            Lesson lesson = new Lesson(lesson_num, lesson_type, lesson_date, lesson_subject, lesson_group, lesson_stud, grade);
+            Integer grade = data.getIntExtra(AddLessonActivity.EXTRA_LESSON_GRADE, 0);
+            Integer lesson_num = data.getIntExtra(AddLessonActivity.EXTRA_LESSON_NUM, 0);
+            Integer lesson_stud = data.getIntExtra(AddLessonActivity.EXTRA_LESSON_STUDENT, 0);
+            boolean lesson_check = data.getBooleanExtra(AddLessonActivity.EXTRA_LESSON_CHECK, false);
+            Lesson lesson = new Lesson(lesson_num, lesson_type, lesson_date, lesson_subject, lesson_group, lesson_stud, grade, lesson_check);
             lessonViewModel.insert(lesson);
             recreate();
             Toast.makeText(this, "Запись добавлена", Toast.LENGTH_SHORT).show();
