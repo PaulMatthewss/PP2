@@ -83,18 +83,24 @@ public class AddLessonActivity extends AppCompatActivity {
         Submit_Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(grade.getText().toString().trim().isEmpty()){
+                if(grade.getText().toString().trim().isEmpty() && lesson_checkBox.isChecked()){
                     Toast.makeText(AddLessonActivity.this, "Пожалуйста поставьте оценку", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 try{
+                    Integer g;
+                    if(grade.getText().toString().trim().isEmpty()){
+                        g = null;
+                    }
+                    else {
+                        g = Integer.parseInt(grade.getText().toString().trim());
+                    }
                     Integer lesson_n = Integer.parseInt(lesson_num.getText().toString().trim());
                     String lesson_t = lesson_type.getText().toString().trim();
                     String lesson_d = lesson_date.getText().toString().trim();
                     String lesson_s = lesson_subject.getText().toString().trim();
                     String lesson_g = lesson_group.getText().toString().trim();
                     Integer lesson_st = Integer.parseInt(lesson_stud.getText().toString().trim());
-                    Integer g = Integer.parseInt(grade.getText().toString().trim());
                     boolean lesson_check = lesson_checkBox.isChecked();
                     Intent data = new Intent();
                     data.putExtra(SUB_TO_PARSE, subject_name);
