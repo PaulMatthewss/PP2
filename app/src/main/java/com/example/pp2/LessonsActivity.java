@@ -31,7 +31,24 @@ public class LessonsActivity extends AppCompatActivity {
             "com.example.pp2.GROUP_TO_PARSE";
     public static final String STUD_TO_PARSE =
             "com.example.pp2.STUD_TO_PARSE";
+    public static final String EXTRA_DATE =
+            "com.example.pp2.EXTRA_DATE";
+    public static final String EXTRA_TYPE =
+            "com.example.pp2.EXTRA_TYPE";
+    public static final String EXTRA_NUM =
+            "com.example.pp2.EXTRA_NUM";
+    public static final String EXTRA_GRADE =
+            "com.example.pp2.EXTRA_GRADE";
+    public static final String EXTRA_GROUP =
+            "com.example.pp2.EXTRA_GROUP";
+    public static final String EXTRA_STUD_NUM =
+            "com.example.pp2.EXTRA_STUD_NUM";
+    public static final String EXTRA_SUBJ =
+            "com.example.pp2.EXTRA_SUBJ";
+    public static final String EXTRA_CHECK =
+            "com.example.pp2.EXTRA_CHECK";
     public static final int ADD_LESSON_REQUEST = 1;
+    public static final int EDIT_LESSON_REQUEST = 2;
     Button Add_Button, Back_Button;
     RecyclerView recyclerView;
     LessonRowAdapter lessonRowAdapter;
@@ -85,12 +102,40 @@ public class LessonsActivity extends AppCompatActivity {
                 lessonRowAdapter.setLessons(lessons);
             }
         });
-        /*lessonViewModel.getSum().observe(this, new Observer<Integer>() {
+        /*lessonViewModel.getAccepted_Works().observe(this, new Observer<Integer>() {
             @Override
             public void onChanged(Integer integer) {
-                all_grades.setText(lessonViewModel.getSum().getValue());
+
             }
         });*/
+        //String acc_result = lessonViewModel.getAccepted_Works().toString();
+        //accepted_works.setText(acc_result);
+        //String grade_result = String.valueOf(lessonViewModel.getSum().getValue());
+        //accepted_works.setText(grade_result);
+        lessonRowAdapter.setOnItemClickListener(new LessonRowAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Lesson lesson) {
+                try {
+                    Intent intent = new Intent(LessonsActivity.this, UpdateLessonActivity.class);
+                    intent.putExtra(SUB_TO_PARSE, subject_name);
+                    intent.putExtra(GROUP_TO_PARSE, group_name);
+                    intent.putExtra(STUD_TO_PARSE, student_number);
+                    intent.putExtra(UpdateLessonActivity.EXTRA_ID, lesson.getLes_id());
+                    intent.putExtra(UpdateLessonActivity.EXTRA_DATE, lesson.getLesson_date());
+                    intent.putExtra(UpdateLessonActivity.EXTRA_TYPE, lesson.getLesson_type());
+                    intent.putExtra(UpdateLessonActivity.EXTRA_NUM, lesson.getLesson_num());
+                    intent.putExtra(UpdateLessonActivity.EXTRA_GRADE, lesson.getGrade());
+                    intent.putExtra(UpdateLessonActivity.EXTRA_GROUP, lesson.getGroup());
+                    intent.putExtra(UpdateLessonActivity.EXTRA_STUD_NUM, lesson.getStudent_num());
+                    intent.putExtra(UpdateLessonActivity.EXTRA_SUBJ, lesson.getSubject());
+                    intent.putExtra(UpdateLessonActivity.EXTRA_CHECK, lesson.isIs_accepted());
+                    startActivityForResult(intent, EDIT_LESSON_REQUEST);
+                } catch (Exception e) {
+                    Toast.makeText(LessonsActivity.this, "Ошибка: " + e, Toast.LENGTH_SHORT).show();
+                    //throw new RuntimeException(e);
+                }
+            }
+        });
     }
 
     private String[] get_data_from_web_service(String group_name) {

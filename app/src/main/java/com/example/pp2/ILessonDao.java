@@ -15,6 +15,8 @@ public interface ILessonDao {
     LiveData<List<Lesson>> getAllLessons();
     @Query("SELECT SUM(grade) FROM lessons WHERE grade is not null")
     LiveData<Integer> getSum();
+    @Query("SELECT COUNT(CASE WHEN lessons.is_accepted THEN 1 END) FROM lessons")
+    LiveData<Integer> getAccepted_Works();
     @Insert
     void insertLesson(Lesson lesson);
     @Update

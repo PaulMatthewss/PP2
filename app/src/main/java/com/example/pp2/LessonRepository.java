@@ -11,11 +11,13 @@ public class LessonRepository {
     public ILessonDao lessonDao;
     private LiveData<List<Lesson>> allLessons;
     private LiveData<Integer> sumLessonsGrades;
+    private LiveData<Integer> sumLessonsAccepted;
     public LessonRepository(Application application){
         AppDatabase database = AppDatabase.getInstance(application);
         lessonDao = database.iLessonDao();
         allLessons = lessonDao.getAllLessons();
         sumLessonsGrades = lessonDao.getSum();
+        sumLessonsAccepted = lessonDao.getAccepted_Works();
     }
     public void insert(Lesson lesson){
         new LessonRepository.InsertLessonAsyncTask(lessonDao).execute(lesson);
@@ -31,6 +33,9 @@ public class LessonRepository {
     }
     public LiveData<Integer> getSum(){
         return sumLessonsGrades;
+    }
+    public LiveData<Integer> getAccepted_Works(){
+        return sumLessonsAccepted;
     }
     private static class InsertLessonAsyncTask extends AsyncTask<Lesson, Void, Void> {
         private  ILessonDao lessonDao;

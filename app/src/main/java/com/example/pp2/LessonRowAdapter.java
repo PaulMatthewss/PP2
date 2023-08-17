@@ -17,7 +17,7 @@ import java.util.List;
 
 public class LessonRowAdapter extends RecyclerView.Adapter<LessonRowAdapter.MyViewHolder> {
     private List<Lesson> lessons = new ArrayList<>();
-    private LessonRowAdapter.OnItemClickListener listener;
+    private OnItemClickListener listener;
 
     @NonNull
     @Override
@@ -30,8 +30,8 @@ public class LessonRowAdapter extends RecyclerView.Adapter<LessonRowAdapter.MyVi
     @Override
     public void onBindViewHolder(@NonNull LessonRowAdapter.MyViewHolder holder, int position) {
         Lesson currentLesson = lessons.get(position);
-        holder.lesson_date_txt.setText(String.valueOf(currentLesson.getLesson_date()));
-        holder.lesson_type_txt.setText(String.valueOf(currentLesson.getLesson_type()));
+        holder.lesson_date_txt.setText(String.valueOf(currentLesson.getGrade()));
+        holder.lesson_type_txt.setText(String.valueOf(currentLesson.isIs_accepted()));
     }
 
     @Override
@@ -67,7 +67,7 @@ public class LessonRowAdapter extends RecyclerView.Adapter<LessonRowAdapter.MyVi
     public interface  OnItemClickListener{
         void onItemClick(Lesson lesson);
     }
-    public void setOnItemClickListener(LessonRowAdapter.OnItemClickListener listener){
+    public void setOnItemClickListener(OnItemClickListener listener){
         this.listener = listener;
     }
 }

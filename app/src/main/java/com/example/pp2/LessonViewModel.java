@@ -12,11 +12,15 @@ public class LessonViewModel extends AndroidViewModel {
     private LessonRepository lessonRepository;
     private LiveData<List<Lesson>> allLessons;
     private LiveData<Integer> sumLessonsGrades;
+
+    private LiveData<Integer> sumLessonsAccepted;
+
     public LessonViewModel(@NonNull Application application) {
         super(application);
         lessonRepository = new LessonRepository(application);
         allLessons = lessonRepository.getAllLessons();
         sumLessonsGrades = lessonRepository.getSum();
+        sumLessonsAccepted = lessonRepository.getAccepted_Works();
     }
     public void insert(Lesson lesson){
         lessonRepository.insert(lesson);
@@ -32,5 +36,8 @@ public class LessonViewModel extends AndroidViewModel {
     }
     public LiveData<Integer> getSum(){
         return sumLessonsGrades;
+    }
+    public LiveData<Integer> getAccepted_Works(){
+        return sumLessonsAccepted;
     }
 }
