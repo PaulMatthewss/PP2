@@ -116,20 +116,7 @@ public class LessonsActivity extends AppCompatActivity {
             @Override
             public void onItemClick(Lesson lesson) {
                 try {
-                    Intent intent = new Intent(LessonsActivity.this, UpdateLessonActivity.class);
-                    intent.putExtra(SUB_TO_PARSE, subject_name);
-                    intent.putExtra(GROUP_TO_PARSE, group_name);
-                    intent.putExtra(STUD_TO_PARSE, student_number);
-                    intent.putExtra(UpdateLessonActivity.EXTRA_ID, lesson.getLes_id());
-                    intent.putExtra(UpdateLessonActivity.EXTRA_DATE, lesson.getLesson_date());
-                    intent.putExtra(UpdateLessonActivity.EXTRA_TYPE, lesson.getLesson_type());
-                    intent.putExtra(UpdateLessonActivity.EXTRA_NUM, lesson.getLesson_num());
-                    intent.putExtra(UpdateLessonActivity.EXTRA_GRADE, lesson.getGrade());
-                    intent.putExtra(UpdateLessonActivity.EXTRA_GROUP, lesson.getGroup());
-                    intent.putExtra(UpdateLessonActivity.EXTRA_STUD_NUM, lesson.getStudent_num());
-                    intent.putExtra(UpdateLessonActivity.EXTRA_SUBJ, lesson.getSubject());
-                    intent.putExtra(UpdateLessonActivity.EXTRA_CHECK, lesson.isIs_accepted());
-                    startActivityForResult(intent, EDIT_LESSON_REQUEST);
+
                 } catch (Exception e) {
                     Toast.makeText(LessonsActivity.this, "Ошибка: " + e, Toast.LENGTH_SHORT).show();
                     //throw new RuntimeException(e);
