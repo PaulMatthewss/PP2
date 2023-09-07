@@ -80,10 +80,6 @@ public class LessonsActivity extends AppCompatActivity {
         Add_Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*String[] web_data = get_data_from_web_service(group_name);
-                for (int i = 0; i < web_data.length; i++){ //for loop to print the array
-                    Log.d("Element" + i, web_data[i]);
-                }*/
                 Intent intent = new Intent(LessonsActivity.this, AddLessonActivity.class);
                 intent.putExtra(SUB_TO_PARSE, subject_name);
                 intent.putExtra(GROUP_TO_PARSE, group_name);
@@ -123,19 +119,6 @@ public class LessonsActivity extends AppCompatActivity {
                 }
             }
         });
-    }
-
-    private String[] get_data_from_web_service(String group_name) {
-        String url = "https://digitalacademy.syktsu.ru/common.asmx?op=getScheduleGroup?group_name=" + group_name + "&week_offset=0";
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://digitalacademy.syktsu.ru/")
-                .build();
-
-        WebService service = retrofit.create(WebService.class);
-        Call<List<Lesson>> lessons = service.listLessons(group_name);
-        Log.d("Output", String.valueOf(lessons));
-        String[] arr = {"дефолтное данное"};
-        return arr;
     }
 
     @Override

@@ -57,4 +57,9 @@ dependencies {
 
     // optional - Paging 3 Integration
     implementation "androidx.room:room-paging:$room_version"
+
+    //retrofit config
+    implementation "com.squareup.retrofit2:retrofit:2.4.0"
+    // Retrofit with Scalar Converter
+    implementation "com.squareup.retrofit2:converter-scalars:2.4.0"
 }
