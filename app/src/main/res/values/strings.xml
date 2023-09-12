@@ -19,4 +19,6 @@
     <string name="subject_name">Название дисциплины</string>
     <string name="Gender">Пол</string>
     <string name="info_add_student">Добавление студента</string>
+    <string name="year_header">Введите год</string>
+    <string name="group_year">Год группы</string>
 </resources>

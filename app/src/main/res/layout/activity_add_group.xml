@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="15dp"
-    tools:context=".AddGroupActivity">
+    tools:context=".AddActivities.AddGroupActivity">
 
     <TextView
         android:layout_width="match_parent"
@@ -37,13 +37,13 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Год группы" />
+        android:text="@string/group_year" />
 
     <NumberPicker
         android:id="@+id/year"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Введите год"
+        android:hint="@string/year_header"
         android:minHeight="48dp" />
 
     <LinearLayout
