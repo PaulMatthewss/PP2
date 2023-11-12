@@ -35,6 +35,7 @@ public class SubjectActivity extends AppCompatActivity {
 
         Add_Button = findViewById(R.id.Add_Button);
         recyclerView = findViewById(R.id.recyclerView);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
         Add_Button.setOnClickListener(view -> {
             Intent intent = new Intent(SubjectActivity.this, AddSubjectActivity.class);

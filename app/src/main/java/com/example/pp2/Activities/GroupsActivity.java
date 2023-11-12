@@ -38,7 +38,7 @@ public class GroupsActivity extends AppCompatActivity {
         recyclerView_groups = findViewById(R.id.recyclerView_groups);
         String subject_name = getIntent().getStringExtra(SubjectActivity.SUB_TO_PARSE);
         setTitle("Журнал: " + subject_name);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
         add_group_button.setOnClickListener(view -> {
             Intent intent = new Intent(GroupsActivity.this, AddGroupActivity.class);

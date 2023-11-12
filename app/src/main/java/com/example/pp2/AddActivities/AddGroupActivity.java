@@ -37,7 +37,7 @@ public class AddGroupActivity extends AppCompatActivity {
         group_name = findViewById(R.id.group_name);
         year = findViewById(R.id.year);
         String subject_name = getIntent().getStringExtra(GroupsActivity.SUB_TO_PARSE);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
         // Создаем адаптер ArrayAdapter с помощью массива строк и стандартной разметки элемета spinner
         ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, groups);

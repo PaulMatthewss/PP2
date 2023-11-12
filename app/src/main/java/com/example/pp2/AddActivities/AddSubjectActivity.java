@@ -39,7 +39,7 @@ public class AddSubjectActivity extends AppCompatActivity {
         subject_lang = findViewById(R.id.lang_input);
         subject_ide = findViewById(R.id.ide_input);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
         // Создаем адаптер ArrayAdapter с помощью массива строк и стандартной разметки элемета spinner
         ArrayAdapter<String> adapter_lang = new ArrayAdapter(this, android.R.layout.simple_spinner_item, subject_languages);
