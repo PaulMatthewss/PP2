@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.pp2.Activities.MainActivity;
+import com.example.pp2.Activities.SubjectActivity;
 import com.example.pp2.R;
 
 public class AddSubjectActivity extends AppCompatActivity {
@@ -39,6 +39,8 @@ public class AddSubjectActivity extends AppCompatActivity {
         subject_lang = findViewById(R.id.lang_input);
         subject_ide = findViewById(R.id.ide_input);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         // Создаем адаптер ArrayAdapter с помощью массива строк и стандартной разметки элемета spinner
         ArrayAdapter<String> adapter_lang = new ArrayAdapter(this, android.R.layout.simple_spinner_item, subject_languages);
         // Определяем разметку для использования при выборе элемента
@@ -54,7 +56,7 @@ public class AddSubjectActivity extends AppCompatActivity {
         subject_ide.setAdapter(adapter_ide);
 
         Cancel_Button.setOnClickListener(view ->{
-            Intent intent = new Intent(this, MainActivity.class);
+            Intent intent = new Intent(this, SubjectActivity.class);
             startActivity(intent);
         });
 

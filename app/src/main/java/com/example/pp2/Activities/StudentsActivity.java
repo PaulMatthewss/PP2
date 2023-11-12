@@ -42,6 +42,7 @@ public class StudentsActivity extends AppCompatActivity {
         String subject_name = getIntent().getStringExtra(GroupsActivity.SUB_TO_PARSE);
         String group_name = getIntent().getStringExtra(GroupsActivity.GROUP_TO_PARSE);
         setTitle("Журнал: " + subject_name + ", " + group_name);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         button_back.setOnClickListener(view -> {
             Intent intent = new Intent(StudentsActivity.this, GroupsActivity.class);

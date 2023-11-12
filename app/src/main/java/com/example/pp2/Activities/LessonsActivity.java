@@ -58,6 +58,7 @@ public class LessonsActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerView);
         accepted_works = findViewById(R.id.accepted_works);
         all_grades = findViewById(R.id.all_grades);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         String subject_name = getIntent().getStringExtra(StudentsActivity.SUB_TO_PARSE);
         String group_name = getIntent().getStringExtra(StudentsActivity.GROUP_TO_PARSE);
         String student_number = getIntent().getStringExtra(StudentsActivity.STUD_TO_PARSE);

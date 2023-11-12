@@ -11,13 +11,13 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.pp2.Adapters.MainRowAdapter;
+import com.example.pp2.Adapters.SubjectRowAdapter;
 import com.example.pp2.AddActivities.AddSubjectActivity;
 import com.example.pp2.Entities.Subject;
 import com.example.pp2.R;
 import com.example.pp2.ViewModels.SubjectViewModel;
 
-public class MainActivity extends AppCompatActivity {
+public class SubjectActivity extends AppCompatActivity {
     public static final String SUB_TO_PARSE =
             "com.example.pp2.SUB_TO_PARSE";
 
@@ -25,30 +25,30 @@ public class MainActivity extends AppCompatActivity {
 
     Button Add_Button;
     RecyclerView recyclerView;
-    MainRowAdapter mainRowAdapter;
+    SubjectRowAdapter subjectRowAdapter;
     private SubjectViewModel subjectViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_subject);
 
         Add_Button = findViewById(R.id.Add_Button);
         recyclerView = findViewById(R.id.recyclerView);
 
         Add_Button.setOnClickListener(view -> {
-            Intent intent = new Intent(MainActivity.this, AddSubjectActivity.class);
+            Intent intent = new Intent(SubjectActivity.this, AddSubjectActivity.class);
             startActivityForResult(intent, ADD_SUBJECT_REQUEST);
         });
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+        recyclerView.setLayoutManager(new LinearLayoutManager(SubjectActivity.this));
         recyclerView.setHasFixedSize(true);
-        mainRowAdapter = new MainRowAdapter();
-        recyclerView.setAdapter(mainRowAdapter);
+        subjectRowAdapter = new SubjectRowAdapter();
+        recyclerView.setAdapter(subjectRowAdapter);
         subjectViewModel = new ViewModelProvider(this).get(SubjectViewModel.class);
-        subjectViewModel.getAllSubjects().observe(this, subjects -> mainRowAdapter.setSubjects(subjects));
-        mainRowAdapter.setOnItemClickListener(subject -> {
-            Intent intent = new Intent(MainActivity.this, GroupsActivity.class);
+        subjectViewModel.getAllSubjects().observe(this, subjects -> subjectRowAdapter.setSubjects(subjects));
+        subjectRowAdapter.setOnItemClickListener(subject -> {
+            Intent intent = new Intent(SubjectActivity.this, GroupsActivity.class);
             intent.putExtra(SUB_TO_PARSE, subject.getName());
             startActivity(intent);
         });

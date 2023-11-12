@@ -56,6 +56,7 @@ public class AddLessonActivity extends AppCompatActivity {
         lesson_checkBox = findViewById(R.id.lesson_checkBox);
         Cancel_Button = findViewById(R.id.Cancel_Button);
         Submit_Button = findViewById(R.id.Submit_Button);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //parsing stuff
         String subject_name = getIntent().getStringExtra(LessonsActivity.SUB_TO_PARSE);
         String group_name = getIntent().getStringExtra(LessonsActivity.GROUP_TO_PARSE);

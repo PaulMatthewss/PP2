@@ -17,20 +17,20 @@ import com.example.pp2.Entities.Subject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainRowAdapter extends RecyclerView.Adapter<MainRowAdapter.MyViewHolder> {
+public class SubjectRowAdapter extends RecyclerView.Adapter<SubjectRowAdapter.MyViewHolder> {
     private List<Subject> subjects = new ArrayList<>();
     private OnItemClickListener listener;
 
     @NonNull
     @Override
-    public MainRowAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public SubjectRowAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.row_layout_main, parent, false);
+                .inflate(R.layout.row_layout_subject, parent, false);
         return new MyViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MainRowAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull SubjectRowAdapter.MyViewHolder holder, int position) {
         Subject currentSubject = subjects.get(position);
         holder.subject_id_txt.setText(String.valueOf(currentSubject.getSid()));
         holder.subject_name_txt.setText(currentSubject.getName());

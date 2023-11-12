@@ -36,6 +36,7 @@ public class AddStudentActivity extends AppCompatActivity {
         stud_num = findViewById(R.id.stud_num);
         String subject_name = getIntent().getStringExtra(StudentsActivity.SUB_TO_PARSE);
         String group_name = getIntent().getStringExtra(StudentsActivity.GROUP_TO_PARSE);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Cancel_Button_add_student.setOnClickListener(view ->{
             Intent intent = new Intent(this, StudentsActivity.class);

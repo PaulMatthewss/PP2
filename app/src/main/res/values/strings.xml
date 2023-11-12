@@ -1,4 +1,10 @@
 <resources>
+    <string name="enter">Вход</string>
+    <string name="login">Логин</string>
+    <string name="password">Пароль</string>
+    <string name="enter_password">Введите пароль</string>
+    <string name="enter_login">Введите логин</string>
+    <string name="btn_enter">Войти</string>
     <string name="app_name">Журнал</string>
     <string name="info">Ваши дисциплины</string>
     <string name="button_text">Добавить\n дисциплину</string>
