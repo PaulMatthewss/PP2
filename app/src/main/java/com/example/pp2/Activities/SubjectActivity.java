@@ -2,7 +2,9 @@ package com.example.pp2.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -26,6 +28,7 @@ public class SubjectActivity extends AppCompatActivity {
     Button Add_Button;
     RecyclerView recyclerView;
     SubjectRowAdapter subjectRowAdapter;
+    ImageButton btn_acc, btn_journal;
     private SubjectViewModel subjectViewModel;
 
     @Override
@@ -35,7 +38,13 @@ public class SubjectActivity extends AppCompatActivity {
 
         Add_Button = findViewById(R.id.Add_Button);
         recyclerView = findViewById(R.id.recyclerView);
+        btn_acc = findViewById(R.id.btn_acc);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+
+        btn_acc.setOnClickListener(view -> {
+            Intent intent = new Intent(SubjectActivity.this, AccountActivity.class);
+            startActivity(intent);
+        });
 
         Add_Button.setOnClickListener(view -> {
             Intent intent = new Intent(SubjectActivity.this, AddSubjectActivity.class);
@@ -70,5 +79,10 @@ public class SubjectActivity extends AppCompatActivity {
             Toast.makeText(this, "Ошибка записи", Toast.LENGTH_SHORT).show();
 
         }
+    }
+
+    public void goAccount (View view){
+        Intent intent = new Intent(SubjectActivity.this, AccountActivity.class);
+        startActivity(intent);
     }
 }

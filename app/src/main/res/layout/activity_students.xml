@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="15dp"
     tools:context=".Activities.StudentsActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="12dp"
-        android:layout_marginVertical="4dp">
+        android:layout_above="@+id/linearLayout4"
+        android:padding="12dp">
 
         <TextView
             android:id="@+id/textView2"
@@ -52,4 +51,29 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</LinearLayout>
+    <LinearLayout
+        android:id="@+id/linearLayout4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:background="@color/design_default_color_primary">
+
+        <ImageButton
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="50sp"
+            android:layout_marginEnd="50sp"
+            android:background="@drawable/ic_btn_journal"
+            android:contentDescription="@string/app_name" />
+
+        <ImageButton
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="50sp"
+            android:layout_marginEnd="50sp"
+            android:background="@drawable/ic_btn_profile"
+            android:contentDescription="@string/account" />
+    </LinearLayout>
+
+</RelativeLayout>
