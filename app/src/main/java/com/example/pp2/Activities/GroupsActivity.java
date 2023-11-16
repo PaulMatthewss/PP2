@@ -3,6 +3,7 @@ package com.example.pp2.Activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -26,6 +27,7 @@ public class GroupsActivity extends AppCompatActivity {
     Button add_group_button, button_back;
     RecyclerView recyclerView_groups;
     GroupRowAdapter groupRowAdapter;
+    ImageButton btn_acc;
     private GroupViewModel groupViewModel;
 
     @Override
@@ -33,12 +35,19 @@ public class GroupsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_groups);
 
+        btn_acc = findViewById(R.id.btn_acc);
+
         add_group_button = findViewById(R.id.AddGroup_Button);
         button_back = findViewById(R.id.Button_Back);
         recyclerView_groups = findViewById(R.id.recyclerView_groups);
         String subject_name = getIntent().getStringExtra(SubjectActivity.SUB_TO_PARSE);
         setTitle("Журнал: " + subject_name);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+
+        btn_acc.setOnClickListener(view -> {
+            Intent intent = new Intent(GroupsActivity.this, AccountActivity.class);
+            startActivity(intent);
+        });
 
         add_group_button.setOnClickListener(view -> {
             Intent intent = new Intent(GroupsActivity.this, AddGroupActivity.class);

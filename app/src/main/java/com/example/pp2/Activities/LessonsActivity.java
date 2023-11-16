@@ -3,6 +3,7 @@ package com.example.pp2.Activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -47,6 +48,7 @@ public class LessonsActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     LessonRowAdapter lessonRowAdapter;
     TextView accepted_works, all_grades;
+    ImageButton btn_acc;
     private LessonViewModel lessonViewModel;
 
     @Override
@@ -58,6 +60,7 @@ public class LessonsActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerView);
         accepted_works = findViewById(R.id.accepted_works);
         all_grades = findViewById(R.id.all_grades);
+        btn_acc = findViewById(R.id.btn_acc);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         String subject_name = getIntent().getStringExtra(StudentsActivity.SUB_TO_PARSE);
         String group_name = getIntent().getStringExtra(StudentsActivity.GROUP_TO_PARSE);
@@ -75,6 +78,10 @@ public class LessonsActivity extends AppCompatActivity {
             intent.putExtra(GROUP_TO_PARSE, group_name);
             intent.putExtra(STUD_TO_PARSE, student_number);
             startActivityForResult(intent, ADD_LESSON_REQUEST);
+        });
+        btn_acc.setOnClickListener(view -> {
+            Intent intent = new Intent(LessonsActivity.this, AccountActivity.class);
+            startActivity(intent);
         });
         recyclerView.setLayoutManager(new LinearLayoutManager(LessonsActivity.this));
         recyclerView.setHasFixedSize(true);
