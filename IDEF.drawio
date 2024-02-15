@@ -1,9 +1,42 @@
-<mxfile host="app.diagrams.net" modified="2024-02-15T08:32:36.828Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" version="23.1.4" etag="iSsao4WkNeZDoizGCArC" type="github">
+<mxfile host="app.diagrams.net" modified="2024-02-15T08:39:14.556Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" etag="4wq1dhCfOTWzqONf5J76" version="23.1.4" type="github">
   <diagram name="Страница — 1" id="Y0HsIRUocQaaYPwpTm-0">
-    <mxGraphModel>
+    <mxGraphModel dx="1434" dy="780" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
+        <mxCell id="lJ25DD90oAWPjn4M_9Yv-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="lJ25DD90oAWPjn4M_9Yv-6" target="lJ25DD90oAWPjn4M_9Yv-8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lJ25DD90oAWPjn4M_9Yv-6" value="Выбор группы" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="250" y="200" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="lJ25DD90oAWPjn4M_9Yv-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="lJ25DD90oAWPjn4M_9Yv-7" target="lJ25DD90oAWPjn4M_9Yv-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lJ25DD90oAWPjn4M_9Yv-7" value="Выбор дисциплины" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="120" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="lJ25DD90oAWPjn4M_9Yv-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="lJ25DD90oAWPjn4M_9Yv-8" target="lJ25DD90oAWPjn4M_9Yv-9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lJ25DD90oAWPjn4M_9Yv-8" value="Выбор студента" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="430" y="280" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="lJ25DD90oAWPjn4M_9Yv-9" value="Постановка оценки" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="610" y="350" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="lJ25DD90oAWPjn4M_9Yv-16" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1" target="lJ25DD90oAWPjn4M_9Yv-7">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="10" y="150" as="sourcePoint" />
+            <mxPoint x="440" y="400" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lJ25DD90oAWPjn4M_9Yv-17" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1" source="lJ25DD90oAWPjn4M_9Yv-9">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="390" y="450" as="sourcePoint" />
+            <mxPoint x="810" y="380" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
