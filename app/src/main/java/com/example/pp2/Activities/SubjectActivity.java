@@ -38,7 +38,7 @@ public class SubjectActivity extends AppCompatActivity {
 
         Add_Button = findViewById(R.id.Add_Button);
         recyclerView = findViewById(R.id.recyclerView);
-        btn_acc = findViewById(R.id.btn_acc);
+        btn_acc = findViewById(R.id.accountButton);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
         btn_acc.setOnClickListener(view -> {

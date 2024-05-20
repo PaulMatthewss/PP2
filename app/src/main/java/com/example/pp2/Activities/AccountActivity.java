@@ -18,7 +18,7 @@ public class AccountActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account);
 
-        btn_journal = findViewById(R.id.btn_journal);
+        btn_journal = findViewById(R.id.journalButton);
         btn_journal.setOnClickListener(view -> {
             Intent intent = new Intent(AccountActivity.this, SubjectActivity.class);
             startActivity(intent);

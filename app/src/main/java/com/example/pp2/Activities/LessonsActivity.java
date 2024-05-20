@@ -60,7 +60,7 @@ public class LessonsActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerView);
         accepted_works = findViewById(R.id.accepted_works);
         all_grades = findViewById(R.id.all_grades);
-        btn_acc = findViewById(R.id.btn_acc);
+        btn_acc = findViewById(R.id.accountButton);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         String subject_name = getIntent().getStringExtra(StudentsActivity.SUB_TO_PARSE);
         String group_name = getIntent().getStringExtra(StudentsActivity.GROUP_TO_PARSE);

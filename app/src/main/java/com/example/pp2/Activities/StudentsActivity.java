@@ -41,7 +41,7 @@ public class StudentsActivity extends AppCompatActivity {
         recyclerView_students = findViewById(R.id.recyclerView_students);
         add_student_button = findViewById(R.id.AddStudent_Button);
         button_back = findViewById(R.id.Button_Back);
-        btn_acc = findViewById(R.id.btn_acc);
+        btn_acc = findViewById(R.id.accountButton);
         String subject_name = getIntent().getStringExtra(GroupsActivity.SUB_TO_PARSE);
         String group_name = getIntent().getStringExtra(GroupsActivity.GROUP_TO_PARSE);
         setTitle("Журнал: " + subject_name + ", " + group_name);

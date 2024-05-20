@@ -35,7 +35,7 @@ public class GroupsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_groups);
 
-        btn_acc = findViewById(R.id.btn_acc);
+        btn_acc = findViewById(R.id.accountButton);
 
         add_group_button = findViewById(R.id.AddGroup_Button);
         button_back = findViewById(R.id.Button_Back);
