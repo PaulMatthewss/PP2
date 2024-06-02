@@ -12,16 +12,16 @@ public class Subject {
     @ColumnInfo(name = "subject_name")
     private final String name;
 
-    @ColumnInfo(name = "subject_lang")
-    private final String lang;
+    @ColumnInfo(name = "langId")
+    private final String langId;
 
-    @ColumnInfo(name = "subject_ide")
-    private final String ide;
+    @ColumnInfo(name = "ideId")
+    private final String ideId;
 
-    public Subject(String name, String lang, String ide) {
+    public Subject(String name, String langId, String ideId) {
         this.name = name;
-        this.lang = lang;
-        this.ide = ide;
+        this.langId = langId;
+        this.ideId = ideId;
     }
 
     public void setSid(int sid) {
@@ -36,11 +36,11 @@ public class Subject {
         return name;
     }
 
-    public String getLang() {
-        return lang;
+    public String getLangId() {
+        return langId;
     }
 
-    public String getIde() {
-        return ide;
+    public String getIdeId() {
+        return ideId;
     }
 }

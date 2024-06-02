@@ -45,9 +45,9 @@ public class AddStudentActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        Submit_Button_add_student.setOnClickListener(view -> saveSubject());
+        Submit_Button_add_student.setOnClickListener(view -> saveStudent());
     }
-    private void saveSubject(){
+    private void saveStudent(){
         if(fio_input.getText().toString().trim().isEmpty() ||
                 stud_num.getText().toString().trim().isEmpty()){
             Toast.makeText(this, "Пожалуйста введите данные", Toast.LENGTH_SHORT).show();

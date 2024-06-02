@@ -55,9 +55,9 @@ public class AddGroupActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        Submit_Button_AddGroup.setOnClickListener(view -> saveSubject());
+        Submit_Button_AddGroup.setOnClickListener(view -> saveGroup());
     }
-    private void saveSubject(){
+    private void saveGroup(){
         if(group_name.getSelectedItem().toString().trim().isEmpty()){
             Toast.makeText(this, "Пожалуйста выберите группу", Toast.LENGTH_SHORT).show();
             return;

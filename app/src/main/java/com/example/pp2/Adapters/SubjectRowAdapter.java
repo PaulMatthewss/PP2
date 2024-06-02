@@ -34,8 +34,8 @@ public class SubjectRowAdapter extends RecyclerView.Adapter<SubjectRowAdapter.My
         Subject currentSubject = subjects.get(position);
         holder.subject_id_txt.setText(String.valueOf(currentSubject.getSid()));
         holder.subject_name_txt.setText(currentSubject.getName());
-        holder.subject_land_txt.setText(currentSubject.getLang());
-        holder.subject_ide_txt.setText(currentSubject.getIde());
+        holder.subject_land_txt.setText(currentSubject.getLangId());
+        holder.subject_ide_txt.setText(currentSubject.getIdeId());
     }
 
     @Override
