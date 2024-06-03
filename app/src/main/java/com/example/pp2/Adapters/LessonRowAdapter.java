@@ -32,8 +32,9 @@ public class LessonRowAdapter extends RecyclerView.Adapter<LessonRowAdapter.MyVi
     @Override
     public void onBindViewHolder(@NonNull LessonRowAdapter.MyViewHolder holder, int position) {
         Lesson currentLesson = lessons.get(position);
-        holder.lesson_date_txt.setText(String.valueOf(currentLesson.getGrade()));
-        holder.lesson_type_txt.setText(String.valueOf(currentLesson.isIs_accepted()));
+        holder.lesson_date_txt.setText(String.valueOf(currentLesson.getLesson_date()));
+        holder.lesson_type_txt.setText(String.valueOf(currentLesson.getLesson_type()));
+        holder.lesson_grade.setText(String.valueOf(currentLesson.getGrade()));
     }
 
     @Override
@@ -46,7 +47,7 @@ public class LessonRowAdapter extends RecyclerView.Adapter<LessonRowAdapter.MyVi
         notifyDataSetChanged();
     }
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView lesson_id_txt, lesson_date_txt, lesson_type_txt;
+        TextView lesson_id_txt, lesson_date_txt, lesson_type_txt, lesson_textbox, lesson_grade;
         Button update_button;
         LinearLayout row_element;
         public MyViewHolder(@NonNull View itemView) {
@@ -54,6 +55,8 @@ public class LessonRowAdapter extends RecyclerView.Adapter<LessonRowAdapter.MyVi
             lesson_id_txt = itemView.findViewById(R.id.lesson_id_txt);
             lesson_date_txt = itemView.findViewById(R.id.lesson_date_txt);
             lesson_type_txt = itemView.findViewById(R.id.lesson_type_txt);
+            lesson_textbox = itemView.findViewById(R.id.lesson_textbox);
+            lesson_grade = itemView.findViewById(R.id.lesson_grade);
             update_button = itemView.findViewById(R.id.update_button);
             row_element = itemView.findViewById(R.id.row_element);
             itemView.setOnClickListener(view -> {

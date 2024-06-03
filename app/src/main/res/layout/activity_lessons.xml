@@ -91,7 +91,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:paddingHorizontal="15dp"
-                android:text="0"
+                android:text="2"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/textView5" />
 
@@ -108,7 +108,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:paddingHorizontal="15dp"
-                android:text="0"
+                android:text="7"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
 
