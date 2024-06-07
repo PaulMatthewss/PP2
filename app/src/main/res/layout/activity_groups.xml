@@ -51,16 +51,7 @@
                 android:id="@+id/AddGroup_Button"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginEnd="5dp"
                 android:text="Добавить"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/Button_Back" />
-
-            <Button
-                android:id="@+id/Button_Back"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="@string/button_cancel"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
 

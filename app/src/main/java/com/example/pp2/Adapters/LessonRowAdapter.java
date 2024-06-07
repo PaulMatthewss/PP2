@@ -57,7 +57,6 @@ public class LessonRowAdapter extends RecyclerView.Adapter<LessonRowAdapter.MyVi
             lesson_type_txt = itemView.findViewById(R.id.lesson_type_txt);
             lesson_textbox = itemView.findViewById(R.id.lesson_textbox);
             lesson_grade = itemView.findViewById(R.id.lesson_grade);
-            update_button = itemView.findViewById(R.id.update_button);
             row_element = itemView.findViewById(R.id.row_element);
             itemView.setOnClickListener(view -> {
                 int position = getAdapterPosition();

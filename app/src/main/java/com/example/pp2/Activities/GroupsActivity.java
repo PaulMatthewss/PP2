@@ -24,7 +24,7 @@ public class GroupsActivity extends AppCompatActivity {
     public static final String GROUP_TO_PARSE =
             "com.example.pp2.GROUP_TO_PARSE";
     public static final int ADD_GROUP_REQUEST = 1;
-    Button add_group_button, button_back;
+    Button add_group_button;
     RecyclerView recyclerView_groups;
     GroupRowAdapter groupRowAdapter;
     ImageButton journalBtn, studentBtn, subjectBtn;
@@ -51,21 +51,14 @@ public class GroupsActivity extends AppCompatActivity {
         });
 
         add_group_button = findViewById(R.id.AddGroup_Button);
-        button_back = findViewById(R.id.Button_Back);
         recyclerView_groups = findViewById(R.id.recyclerView_groups);
         String subject_name = getIntent().getStringExtra(SubjectActivity.SUB_TO_PARSE);
-        setTitle("Журнал: " + subject_name);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
         add_group_button.setOnClickListener(view -> {
             Intent intent = new Intent(GroupsActivity.this, AddGroupActivity.class);
             intent.putExtra(SUB_TO_PARSE, subject_name);
             startActivityForResult(intent, ADD_GROUP_REQUEST);
-        });
-
-        button_back.setOnClickListener(view -> {
-            Intent intent = new Intent(GroupsActivity.this, SubjectActivity.class);
-            startActivity(intent);
         });
 
         recyclerView_groups.setLayoutManager(new LinearLayoutManager(GroupsActivity.this));

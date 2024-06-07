@@ -55,7 +55,6 @@ public class GroupRowAdapter extends RecyclerView.Adapter<GroupRowAdapter.MyView
             group_id_txt = itemView.findViewById(R.id.group_id_txt);
             group_name_txt = itemView.findViewById(R.id.group_name_txt);
             group_year_txt = itemView.findViewById(R.id.group_year_txt);
-            update_button = itemView.findViewById(R.id.update_button);
             row_element = itemView.findViewById(R.id.row_element);
             itemView.setOnClickListener(view -> {
                 int position = getAdapterPosition();

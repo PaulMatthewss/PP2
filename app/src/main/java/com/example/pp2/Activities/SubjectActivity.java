@@ -24,6 +24,7 @@ public class SubjectActivity extends AppCompatActivity {
             "com.example.pp2.SUB_TO_PARSE";
 
     public static final int ADD_SUBJECT_REQUEST = 1;
+    public static final int UPDATE_SUBJECT_REQUEST = 2;
 
     Button Add_Button;
     RecyclerView recyclerView;
@@ -84,7 +85,9 @@ public class SubjectActivity extends AppCompatActivity {
             subjectViewModel.insert(subject);
             recreate();
             Toast.makeText(this, "Запись добавлена", Toast.LENGTH_SHORT).show();
-        }else{
+        } else if (requestCode == UPDATE_SUBJECT_REQUEST && resultCode == RESULT_OK && data != null) {
+
+        } else{
             Toast.makeText(this, "Ошибка записи", Toast.LENGTH_SHORT).show();
 
         }

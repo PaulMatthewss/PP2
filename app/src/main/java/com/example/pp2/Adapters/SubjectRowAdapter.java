@@ -59,7 +59,6 @@ public class SubjectRowAdapter extends RecyclerView.Adapter<SubjectRowAdapter.My
             subject_name_txt = itemView.findViewById(R.id.subject_name_txt);
             subject_land_txt = itemView.findViewById(R.id.subject_land_txt);
             subject_ide_txt = itemView.findViewById(R.id.subject_ide_txt);
-            update_button = itemView.findViewById(R.id.update_button);
             row_element = itemView.findViewById(R.id.row_element);
             itemView.setOnClickListener(view -> {
                 int position = getAdapterPosition();

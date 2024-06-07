@@ -55,7 +55,6 @@ public class StudentRowAdapter extends RecyclerView.Adapter<StudentRowAdapter.My
             student_id_txt = itemView.findViewById(R.id.student_id_txt);
             student_name_txt = itemView.findViewById(R.id.student_name_txt);
             student_num_txt = itemView.findViewById(R.id.student_num_txt);
-            update_button = itemView.findViewById(R.id.update_button);
             row_element = itemView.findViewById(R.id.row_element);
             itemView.setOnClickListener(view -> {
                 int position = getAdapterPosition();

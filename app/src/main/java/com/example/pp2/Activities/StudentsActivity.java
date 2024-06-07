@@ -27,7 +27,7 @@ public class StudentsActivity extends AppCompatActivity {
             "com.example.pp2.STUD_TO_PARSE";
 
     public static final int ADD_STUDENT_REQUEST = 1;
-    Button add_student_button, button_back;
+    Button add_student_button;
     RecyclerView recyclerView_students;
     StudentRowAdapter studentRowAdapter;
     ImageButton journalBtn, groupBtn, subjectBtn;
@@ -55,17 +55,10 @@ public class StudentsActivity extends AppCompatActivity {
 
         recyclerView_students = findViewById(R.id.recyclerView_students);
         add_student_button = findViewById(R.id.AddStudent_Button);
-        button_back = findViewById(R.id.Button_Back);
         String subject_name = getIntent().getStringExtra(GroupsActivity.SUB_TO_PARSE);
         String group_name = getIntent().getStringExtra(GroupsActivity.GROUP_TO_PARSE);
-        setTitle("Журнал: " + subject_name + ", " + group_name);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
-        button_back.setOnClickListener(view -> {
-            Intent intent = new Intent(StudentsActivity.this, GroupsActivity.class);
-            intent.putExtra(SUB_TO_PARSE, subject_name);
-            startActivity(intent);
-        });
         add_student_button.setOnClickListener(view -> {
             Intent intent = new Intent(StudentsActivity.this, AddStudentActivity.class);
             intent.putExtra(SUB_TO_PARSE, subject_name);
