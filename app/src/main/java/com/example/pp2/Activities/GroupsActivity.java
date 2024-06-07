@@ -27,15 +27,28 @@ public class GroupsActivity extends AppCompatActivity {
     Button add_group_button, button_back;
     RecyclerView recyclerView_groups;
     GroupRowAdapter groupRowAdapter;
-    ImageButton btn_acc;
+    ImageButton journalBtn, studentBtn, subjectBtn;
     private GroupViewModel groupViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_groups);
-
-        btn_acc = findViewById(R.id.accountButton);
+        subjectBtn=findViewById(R.id.subjectsButton);
+        journalBtn=findViewById(R.id.journalButton);
+        studentBtn=findViewById(R.id.studentsButton);
+        subjectBtn.setOnClickListener(view -> {
+            Intent intent = new Intent(GroupsActivity.this, SubjectActivity.class);
+            startActivity(intent);
+        });
+        journalBtn.setOnClickListener(view -> {
+            Intent intent = new Intent(GroupsActivity.this, JournalActivity.class);
+            startActivity(intent);
+        });
+        studentBtn.setOnClickListener(view -> {
+            Intent intent = new Intent(GroupsActivity.this, StudentsActivity.class);
+            startActivity(intent);
+        });
 
         add_group_button = findViewById(R.id.AddGroup_Button);
         button_back = findViewById(R.id.Button_Back);
@@ -43,11 +56,6 @@ public class GroupsActivity extends AppCompatActivity {
         String subject_name = getIntent().getStringExtra(SubjectActivity.SUB_TO_PARSE);
         setTitle("Журнал: " + subject_name);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-
-        btn_acc.setOnClickListener(view -> {
-            Intent intent = new Intent(GroupsActivity.this, AccountActivity.class);
-            startActivity(intent);
-        });
 
         add_group_button.setOnClickListener(view -> {
             Intent intent = new Intent(GroupsActivity.this, AddGroupActivity.class);
@@ -79,7 +87,7 @@ public class GroupsActivity extends AppCompatActivity {
         if(requestCode == ADD_GROUP_REQUEST && resultCode == RESULT_OK && data != null){
             String name = data.getStringExtra(AddGroupActivity.EXTRA_NAME);
             int date = data.getIntExtra(AddGroupActivity.EXTRA_DATE, 2020);
-            Group group = new Group(name, date);
+            Group group = new Group(name);
             groupViewModel.insert(group);
             recreate();
             Toast.makeText(this, "Запись добавлена", Toast.LENGTH_SHORT).show();

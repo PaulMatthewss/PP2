@@ -12,23 +12,12 @@ public class Group {
     @ColumnInfo(name = "group_name")
     private final String group_name;
 
-    @ColumnInfo(name = "group_year")
-    private final int group_year;
-
-    @ColumnInfo(name = "subject_name")
-    private String subject_name;
-
-    public Group(String group_name, int group_year){
+    public Group(String group_name){
         this.group_name = group_name;
-        this.group_year = group_year;
     }
 
     public void setGid(int gid) {
         this.gid = gid;
-    }
-
-    public void setSubject_name(String subject_name) {
-        this.subject_name = subject_name;
     }
 
     public int getGid() {
@@ -37,13 +26,5 @@ public class Group {
 
     public String getGroup_name() {
         return group_name;
-    }
-
-    public int getGroup_year() {
-        return group_year;
-    }
-
-    public String getSubject_name() {
-        return subject_name;
     }
 }

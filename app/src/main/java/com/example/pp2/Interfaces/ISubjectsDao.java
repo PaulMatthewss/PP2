@@ -5,12 +5,9 @@ import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
-import androidx.room.Transaction;
 import androidx.room.Update;
 
 import com.example.pp2.Entities.Subject;
-import com.example.pp2.Entities.User;
-import com.example.pp2.Entities.UserWithSubjects;
 
 import java.util.List;
 

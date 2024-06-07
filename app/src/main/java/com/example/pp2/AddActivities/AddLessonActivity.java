@@ -11,7 +11,18 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.pp2.Activities.LessonsActivity;
+import com.example.pp2.Entities.Lesson;
 import com.example.pp2.R;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URI;
+import java.util.ArrayList;
 
 public class AddLessonActivity extends AppCompatActivity {
     public static final String SUB_TO_PARSE =
@@ -40,6 +51,7 @@ public class AddLessonActivity extends AppCompatActivity {
     EditText grade;
     CheckBox lesson_checkBox;
     TextView lesson_num, lesson_type, lesson_date, lesson_subject, lesson_group, lesson_stud;
+    private final ArrayList<Lesson> lessons = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,5 +133,36 @@ public class AddLessonActivity extends AppCompatActivity {
                 Toast.makeText(AddLessonActivity.this, "Ошибка: " + e, Toast.LENGTH_SHORT).show();
             }
         });
+    }
+    public void writeItems() {
+        try {
+            InputStream in = URI.create("https://digitalacademy.syktsu.ru/common.asmx/getMinerals").toURL().openStream();
+            JSONArray jArray;
+            try{
+                InputStreamReader isr = new InputStreamReader(in);
+                BufferedReader reader = new BufferedReader(isr);
+                StringBuilder json = new StringBuilder();
+                String line;
+                while((line = reader.readLine()) != null) {
+                    json.append(line);
+                }
+                jArray = new JSONArray(json.toString());
+                lessons.clear();
+                for(int i=0;i<(jArray.length());i++) {
+                    JSONObject json_obj=jArray.getJSONObject(i);
+                    Integer value1 = json_obj.getInt("id");
+                    String value2 = json_obj.getString("name");
+                    String value3 = json_obj.getString("zodiacs");
+                    String value4 = json_obj.getString("planets");
+                    String value5 = json_obj.getString("elements");
+                    //lessons.add(new Lesson(value1,value2,value3,value4,value5,value6,value7,value8));
+                }
+            }
+            catch(Exception exp){
+                exp.printStackTrace();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -14,7 +14,6 @@
         android:layout_marginBottom="100dp"
         android:orientation="vertical"
         android:padding="12dp"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout_navbar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -117,29 +116,41 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
-        android:id="@+id/linearLayout_navbar"
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:background="@color/design_default_color_primary"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent">
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <ImageButton
             android:id="@+id/journalButton"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:layout_marginHorizontal="42dp"
-            android:background="@drawable/ic_btn_journal"
+            app:srcCompat="@drawable/ic_btn_journal"
             android:contentDescription="@string/app_name" />
 
         <ImageButton
-            android:id="@+id/accountButton"
+            android:id="@+id/subjectsButton"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:layout_marginHorizontal="42dp"
-            android:background="@drawable/ic_btn_profile"
+            app:srcCompat="@drawable/ic_btn_subjects"
+            android:contentDescription="@string/account" />
+        <ImageButton
+            android:id="@+id/groupsButton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/ic_btn_group"
+            android:contentDescription="@string/account" />
+        <ImageButton
+            android:id="@+id/studentsButton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/ic_btn_student"
             android:contentDescription="@string/account" />
     </LinearLayout>
 

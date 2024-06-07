@@ -28,23 +28,32 @@ public class SubjectActivity extends AppCompatActivity {
     Button Add_Button;
     RecyclerView recyclerView;
     SubjectRowAdapter subjectRowAdapter;
-    ImageButton btn_acc, btn_journal;
+    ImageButton journalBtn, studentBtn, groupBtn;
     private SubjectViewModel subjectViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_subject);
+        journalBtn=findViewById(R.id.journalButton);
+        groupBtn=findViewById(R.id.groupsButton);
+        studentBtn=findViewById(R.id.studentsButton);
+        journalBtn.setOnClickListener(view -> {
+            Intent intent = new Intent(SubjectActivity.this, JournalActivity.class);
+            startActivity(intent);
+        });
+        groupBtn.setOnClickListener(view -> {
+            Intent intent = new Intent(SubjectActivity.this, GroupsActivity.class);
+            startActivity(intent);
+        });
+        studentBtn.setOnClickListener(view -> {
+            Intent intent = new Intent(SubjectActivity.this, StudentsActivity.class);
+            startActivity(intent);
+        });
 
         Add_Button = findViewById(R.id.Add_Button);
         recyclerView = findViewById(R.id.recyclerView);
-        btn_acc = findViewById(R.id.accountButton);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-
-        btn_acc.setOnClickListener(view -> {
-            Intent intent = new Intent(SubjectActivity.this, AccountActivity.class);
-            startActivity(intent);
-        });
 
         Add_Button.setOnClickListener(view -> {
             Intent intent = new Intent(SubjectActivity.this, AddSubjectActivity.class);
@@ -81,8 +90,4 @@ public class SubjectActivity extends AppCompatActivity {
         }
     }
 
-    public void goAccount (View view){
-        Intent intent = new Intent(SubjectActivity.this, AccountActivity.class);
-        startActivity(intent);
-    }
 }

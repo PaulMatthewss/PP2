@@ -35,7 +35,6 @@ public class GroupRowAdapter extends RecyclerView.Adapter<GroupRowAdapter.MyView
     public void onBindViewHolder(@NonNull GroupRowAdapter.MyViewHolder holder, int position) {
         Group currentGroup = groups.get(position);
         holder.group_name_txt.setText(currentGroup.getGroup_name());
-        holder.group_year_txt.setText(String.valueOf(currentGroup.getGroup_year()));
     }
 
     @Override

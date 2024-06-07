@@ -28,4 +28,5 @@
     <string name="info_add_student">Добавление студента</string>
     <string name="year_header">Введите год</string>
     <string name="group_year">Год группы</string>
+    <string name="title_activity_journal">JournalActivity</string>
 </resources>

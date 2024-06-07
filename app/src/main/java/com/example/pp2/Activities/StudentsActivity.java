@@ -30,18 +30,32 @@ public class StudentsActivity extends AppCompatActivity {
     Button add_student_button, button_back;
     RecyclerView recyclerView_students;
     StudentRowAdapter studentRowAdapter;
-    ImageButton btn_acc;
+    ImageButton journalBtn, groupBtn, subjectBtn;
     private StudentViewModel studentViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_students);
+        subjectBtn=findViewById(R.id.subjectsButton);
+        groupBtn=findViewById(R.id.groupsButton);
+        journalBtn=findViewById(R.id.journalButton);
+        subjectBtn.setOnClickListener(view -> {
+            Intent intent = new Intent(StudentsActivity.this, SubjectActivity.class);
+            startActivity(intent);
+        });
+        groupBtn.setOnClickListener(view -> {
+            Intent intent = new Intent(StudentsActivity.this, GroupsActivity.class);
+            startActivity(intent);
+        });
+        journalBtn.setOnClickListener(view -> {
+            Intent intent = new Intent(StudentsActivity.this, JournalActivity.class);
+            startActivity(intent);
+        });
 
         recyclerView_students = findViewById(R.id.recyclerView_students);
         add_student_button = findViewById(R.id.AddStudent_Button);
         button_back = findViewById(R.id.Button_Back);
-        btn_acc = findViewById(R.id.accountButton);
         String subject_name = getIntent().getStringExtra(GroupsActivity.SUB_TO_PARSE);
         String group_name = getIntent().getStringExtra(GroupsActivity.GROUP_TO_PARSE);
         setTitle("Журнал: " + subject_name + ", " + group_name);
@@ -57,10 +71,6 @@ public class StudentsActivity extends AppCompatActivity {
             intent.putExtra(SUB_TO_PARSE, subject_name);
             intent.putExtra(GROUP_TO_PARSE, group_name);
             startActivityForResult(intent, ADD_STUDENT_REQUEST);
-        });
-        btn_acc.setOnClickListener(view -> {
-            Intent intent = new Intent(StudentsActivity.this, AccountActivity.class);
-            startActivity(intent);
         });
         recyclerView_students.setLayoutManager(new LinearLayoutManager(StudentsActivity.this));
         recyclerView_students.setHasFixedSize(true);
@@ -82,7 +92,7 @@ public class StudentsActivity extends AppCompatActivity {
         if(requestCode == ADD_STUDENT_REQUEST && resultCode == RESULT_OK && data != null){
             String fio = data.getStringExtra(AddStudentActivity.EXTRA_FIO);
             int student_number = data.getIntExtra(AddStudentActivity.EXTRA_STUD_NUM, 0);
-            Student student = new Student(fio, student_number);
+            Student student = new Student(student_number, fio);
             studentViewModel.insert(student);
             recreate();
             Toast.makeText(this, "Запись добавлена", Toast.LENGTH_SHORT).show();

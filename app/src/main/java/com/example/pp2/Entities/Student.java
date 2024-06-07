@@ -6,26 +6,16 @@ import androidx.room.PrimaryKey;
 
 @Entity(tableName = "students")
 public class Student {
-    @PrimaryKey(autoGenerate = true)
-    private int stud_id;
+    @PrimaryKey(autoGenerate = false)
+    @ColumnInfo(name = "student_num")
+    private final int stud_num;
 
     @ColumnInfo(name = "student_fio")
     private final String fio;
 
-    @ColumnInfo(name = "student_num")
-    private final int stud_num;
-
-    public Student(String fio, int stud_num) {
-        this.fio = fio;
+    public Student(int stud_num, String fio) {
         this.stud_num = stud_num;
-    }
-
-    public void setStud_id(int stud_id) {
-        this.stud_id = stud_id;
-    }
-
-    public int getStud_id() {
-        return stud_id;
+        this.fio = fio;
     }
 
     public String getFio() {

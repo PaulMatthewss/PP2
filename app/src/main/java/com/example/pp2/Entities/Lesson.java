@@ -9,6 +9,7 @@ public class Lesson {
     private int les_id;
     private final Integer lesson_num;
     private final String lesson_type;
+    private final String work_number;
     private final String lesson_date;
     private final String subject;
     private final String group;
@@ -16,9 +17,10 @@ public class Lesson {
     private final Integer grade;
     private final boolean is_accepted;
 
-    public Lesson(Integer lesson_num, String lesson_type, String lesson_date, String subject, String group, Integer student_num, Integer grade, boolean is_accepted) {
+    public Lesson(Integer lesson_num, String lesson_type, String work_number, String lesson_date, String subject, String group, Integer student_num, Integer grade, boolean is_accepted) {
         this.lesson_num = lesson_num;
         this.lesson_type = lesson_type;
+        this.work_number = work_number;
         this.lesson_date = lesson_date;
         this.subject = subject;
         this.group = group;
@@ -26,7 +28,6 @@ public class Lesson {
         this.grade = grade;
         this.is_accepted = is_accepted;
     }
-
     public void setLes_id(int les_id) {
         this.les_id = les_id;
     }
@@ -40,6 +41,10 @@ public class Lesson {
     }
     public String getLesson_type() {
         return lesson_type;
+    }
+
+    public String getWork_number() {
+        return work_number;
     }
 
     public String getLesson_date() {

@@ -60,7 +60,6 @@ public class LessonsActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerView);
         accepted_works = findViewById(R.id.accepted_works);
         all_grades = findViewById(R.id.all_grades);
-        btn_acc = findViewById(R.id.accountButton);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         String subject_name = getIntent().getStringExtra(StudentsActivity.SUB_TO_PARSE);
         String group_name = getIntent().getStringExtra(StudentsActivity.GROUP_TO_PARSE);
@@ -78,10 +77,6 @@ public class LessonsActivity extends AppCompatActivity {
             intent.putExtra(GROUP_TO_PARSE, group_name);
             intent.putExtra(STUD_TO_PARSE, student_number);
             startActivityForResult(intent, ADD_LESSON_REQUEST);
-        });
-        btn_acc.setOnClickListener(view -> {
-            Intent intent = new Intent(LessonsActivity.this, AccountActivity.class);
-            startActivity(intent);
         });
         recyclerView.setLayoutManager(new LinearLayoutManager(LessonsActivity.this));
         recyclerView.setHasFixedSize(true);
@@ -121,7 +116,7 @@ public class LessonsActivity extends AppCompatActivity {
             Integer lesson_num = data.getIntExtra(AddLessonActivity.EXTRA_LESSON_NUM, 0);
             Integer lesson_stud = data.getIntExtra(AddLessonActivity.EXTRA_LESSON_STUDENT, 0);
             boolean lesson_check = data.getBooleanExtra(AddLessonActivity.EXTRA_LESSON_CHECK, false);
-            Lesson lesson = new Lesson(lesson_num, lesson_type, lesson_date, lesson_subject, lesson_group, lesson_stud, grade, lesson_check);
+            Lesson lesson = new Lesson(lesson_num, lesson_type, "workNumber", lesson_date, lesson_subject, lesson_group, lesson_stud, grade, lesson_check);
             lessonViewModel.insert(lesson);
             recreate();
             Toast.makeText(this, "Запись добавлена", Toast.LENGTH_SHORT).show();
