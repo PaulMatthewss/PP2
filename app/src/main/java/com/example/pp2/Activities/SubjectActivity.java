@@ -67,11 +67,12 @@ public class SubjectActivity extends AppCompatActivity {
         recyclerView.setAdapter(subjectRowAdapter);
         subjectViewModel = new ViewModelProvider(this).get(SubjectViewModel.class);
         subjectViewModel.getAllSubjects().observe(this, subjects -> subjectRowAdapter.setSubjects(subjects));
+        /*
         subjectRowAdapter.setOnItemClickListener(subject -> {
             Intent intent = new Intent(SubjectActivity.this, GroupsActivity.class);
             intent.putExtra(SUB_TO_PARSE, subject.getName());
             startActivity(intent);
-        });
+        });*/
     }
 
     @Override
@@ -85,9 +86,7 @@ public class SubjectActivity extends AppCompatActivity {
             subjectViewModel.insert(subject);
             recreate();
             Toast.makeText(this, "Запись добавлена", Toast.LENGTH_SHORT).show();
-        } else if (requestCode == UPDATE_SUBJECT_REQUEST && resultCode == RESULT_OK && data != null) {
-
-        } else{
+        }else{
             Toast.makeText(this, "Ошибка записи", Toast.LENGTH_SHORT).show();
 
         }

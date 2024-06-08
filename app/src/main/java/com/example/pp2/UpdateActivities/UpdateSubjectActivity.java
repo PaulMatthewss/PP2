@@ -2,6 +2,7 @@ package com.example.pp2.UpdateActivities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -9,8 +10,11 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 
 import com.example.pp2.Activities.SubjectActivity;
+import com.example.pp2.AppDatabase;
+import com.example.pp2.Interfaces.ISubjectsDao;
 import com.example.pp2.R;
 
 public class UpdateSubjectActivity  extends AppCompatActivity {
@@ -20,8 +24,9 @@ public class UpdateSubjectActivity  extends AppCompatActivity {
             "com.example.pp2.EXTRA_LANG";
     public static final String EXTRA_IDE =
             "com.example.pp2.EXTRA_IDE";
-    Button Cancel_Button, Submit_Button;
+    Button Cancel_Button, Update_Button;
     Spinner subject_lang, subject_ide;
+    int subjectId;
 
     EditText subject_name;
     String[] subject_languages = {"C#", "Java", "JavaScript"};
@@ -30,15 +35,18 @@ public class UpdateSubjectActivity  extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_subject);
+        setContentView(R.layout.activity_update_subject);
 
-        Cancel_Button = findViewById(R.id.Cancel_Button);
-        Submit_Button = findViewById(R.id.Submit_Button);
-        subject_name = findViewById(R.id.name_input);
-        subject_lang = findViewById(R.id.lang_input);
-        subject_ide = findViewById(R.id.ide_input);
+        Cancel_Button = findViewById(R.id.Cancel_Button_update);
+        Update_Button = findViewById(R.id.Update_Button);
+        subject_name = findViewById(R.id.name_input_update);
+        subject_lang = findViewById(R.id.lang_input_update);
+        subject_ide = findViewById(R.id.ide_input_update);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+
+        subjectId = Integer.parseInt(getIntent().getStringExtra("subjectId"));
+        subject_name.setText(getIntent().getStringExtra("subjectName"));
 
         // Создаем адаптер ArrayAdapter с помощью массива строк и стандартной разметки элемета spinner
         ArrayAdapter<String> adapter_lang = new ArrayAdapter(this, android.R.layout.simple_spinner_item, subject_languages);
@@ -59,23 +67,18 @@ public class UpdateSubjectActivity  extends AppCompatActivity {
             startActivity(intent);
         });
 
-        Submit_Button.setOnClickListener(view -> updateSubject());
-    }
-    private void updateSubject(){
-        if(subject_name.getText().toString().trim().isEmpty() ||
-                subject_lang.getSelectedItem().toString().trim().isEmpty() ||
-                subject_ide.getSelectedItem().toString().trim().isEmpty()){
-            Toast.makeText(this, "Пожалуйста введите данные", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        String name = subject_name.getText().toString().trim();
-        String lang = subject_lang.getSelectedItem().toString().trim();
-        String ide = subject_ide.getSelectedItem().toString().trim();
-        Intent data = new Intent();
-        data.putExtra(EXTRA_NAME, name);
-        data.putExtra(EXTRA_LANG, lang);
-        data.putExtra(EXTRA_IDE, ide);
-        setResult(RESULT_OK, data);
-        finish();
+        Update_Button.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                AppDatabase db = Room.databaseBuilder(getApplicationContext(),
+                        AppDatabase.class, "app_database").allowMainThreadQueries().build();
+                ISubjectsDao iSubjectsDao = db.iSubjectsDao();
+                //iSubjectsDao.updateSubject(subjectId, subject_name.getText().toString().trim(),
+               //         subject_lang.getSelectedItem().toString().trim(),
+                //        subject_ide.getSelectedItem().toString().trim());
+                startActivity(new Intent(getApplicationContext(),SubjectActivity.class));
+                finish();
+            }
+        });
     }
 }

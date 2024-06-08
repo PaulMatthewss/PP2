@@ -67,19 +67,19 @@ public class GroupsActivity extends AppCompatActivity {
         recyclerView_groups.setAdapter(groupRowAdapter);
         groupViewModel = new ViewModelProvider(this).get(GroupViewModel.class);
         groupViewModel.getAllGroups().observe(this, groups -> groupRowAdapter.setAllGroups(groups));
+        /*
         groupRowAdapter.setOnItemClickListener(group -> {
             Intent intent = new Intent(GroupsActivity.this, StudentsActivity.class);
             intent.putExtra(SUB_TO_PARSE, subject_name);
             intent.putExtra(GROUP_TO_PARSE, group.getGroup_name());
             startActivity(intent);
-        });
+        });*/
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == ADD_GROUP_REQUEST && resultCode == RESULT_OK && data != null){
             String name = data.getStringExtra(AddGroupActivity.EXTRA_NAME);
-            int date = data.getIntExtra(AddGroupActivity.EXTRA_DATE, 2020);
             Group group = new Group(name);
             groupViewModel.insert(group);
             recreate();

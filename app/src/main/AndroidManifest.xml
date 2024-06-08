@@ -56,6 +56,18 @@
             android:name=".AddActivities.AddSubjectActivity"
             android:exported="false"
             android:parentActivityName=".Activities.SubjectActivity" />
+        <activity
+            android:name=".UpdateActivities.UpdateSubjectActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".UpdateActivities.UpdateGroupActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".UpdateActivities.UpdateLessonActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".UpdateActivities.UpdateStudentActivity"
+            android:exported="false"/>
     </application>
 
 </manifest>

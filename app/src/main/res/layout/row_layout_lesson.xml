@@ -61,6 +61,7 @@
                 app:layout_constraintTop_toTopOf="@+id/lesson_textbox" />
 
             <ImageButton
+                android:id="@+id/updateBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toStartOf="@+id/deleteBtn"

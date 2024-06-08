@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="15dp">
+    android:padding="15dp"
+    tools:context=".UpdateActivities.UpdateSubjectActivity"
+    android:id="@+id/activity_update_subject">
 
     <TextView
         android:layout_width="match_parent"
