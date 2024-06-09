@@ -19,6 +19,7 @@ import com.example.pp2.Interfaces.IStudentDao;
 import com.example.pp2.Interfaces.ISubjectsDao;
 import com.example.pp2.R;
 import com.example.pp2.Entities.Student;
+import com.example.pp2.UpdateActivities.UpdateStudentActivity;
 import com.example.pp2.UpdateActivities.UpdateSubjectActivity;
 
 import java.util.ArrayList;
@@ -56,11 +57,10 @@ public class StudentRowAdapter extends RecyclerView.Adapter<StudentRowAdapter.My
         holder.updateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view){
-                /*
-                Intent intent = new Intent(new Intent(holder.updateBtn.getContext(), UpdateSubjectActivity.class));
-                intent.putExtra("subjectId", String.valueOf(students.get(position).getSid()));
-                intent.putExtra("subjectName", students.get(position).getName());
-                holder.updateBtn.getContext().startActivity(intent);*/
+                Intent intent = new Intent(new Intent(holder.updateBtn.getContext(), UpdateStudentActivity.class));
+                intent.putExtra("studentNum", String.valueOf(students.get(position).getStud_num()));
+                intent.putExtra("studentFio", students.get(position).getFio());
+                holder.updateBtn.getContext().startActivity(intent);
             }
         });
     }

@@ -40,6 +40,15 @@ public abstract class AppDatabase extends RoomDatabase {
         @Override
         public void onCreate(@NonNull SupportSQLiteDatabase db) {
             super.onCreate(db);
+            new Thread(() -> InitializeData(instance)).start();
         }
     };
+
+    private static void InitializeData(AppDatabase db){
+        ISubjectsDao iSubjectsDao = db.iSubjectsDao();
+        iSubjectsDao.insertSubject(new Subject("Разработка мобильных приложений", "Java","Android Studio"));
+        iSubjectsDao.insertSubject(new Subject("Разработка настольных приложений", "C#","Visual Studio"));
+        iSubjectsDao.insertSubject(new Subject("Веб-разработка", "Javascript","VS Code"));
+
+    }
 }

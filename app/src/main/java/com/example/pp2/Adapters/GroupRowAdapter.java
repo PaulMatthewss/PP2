@@ -1,6 +1,7 @@
 package com.example.pp2.Adapters;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ import com.example.pp2.Entities.Group;
 import com.example.pp2.Interfaces.IGroupDao;
 import com.example.pp2.Interfaces.ISubjectsDao;
 import com.example.pp2.R;
+import com.example.pp2.UpdateActivities.UpdateGroupActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,11 +56,10 @@ public class GroupRowAdapter extends RecyclerView.Adapter<GroupRowAdapter.MyView
         holder.updateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view){
-                /*
-                Intent intent = new Intent(new Intent(holder.updateBtn.getContext(), UpdateSubjectActivity.class));
-                intent.putExtra("subjectId", String.valueOf(students.get(position).getSid()));
-                intent.putExtra("subjectName", students.get(position).getName());
-                holder.updateBtn.getContext().startActivity(intent);*/
+                Intent intent = new Intent(new Intent(holder.updateBtn.getContext(), UpdateGroupActivity.class));
+                intent.putExtra("groupId", String.valueOf(groups.get(position).getGid()));
+                intent.putExtra("groupName", groups.get(position).getGroup_name());
+                holder.updateBtn.getContext().startActivity(intent);
             }
         });
     }

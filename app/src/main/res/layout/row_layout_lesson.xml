@@ -27,21 +27,21 @@
                 app:layout_constraintTop_toTopOf="@+id/lesson_date_txt" />
 
             <TextView
-                android:id="@+id/lesson_date_txt"
+                android:id="@+id/lessonName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="01.01.0001"
+                android:text="Задание 1"
                 android:textColor="@color/design_default_color_on_secondary"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/lesson_type_txt"
+                android:id="@+id/lesson_date_txt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="lesson"
-                app:layout_constraintStart_toStartOf="@+id/lesson_date_txt"
-                app:layout_constraintTop_toBottomOf="@+id/lesson_date_txt" />
+                android:text="date"
+                app:layout_constraintStart_toStartOf="@+id/lessonName"
+                app:layout_constraintTop_toBottomOf="@+id/lessonName" />
 
             <TextView
                 android:id="@+id/lesson_textbox"
@@ -49,8 +49,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:text="Оценка: "
-                app:layout_constraintStart_toEndOf="@+id/lesson_type_txt"
-                app:layout_constraintTop_toBottomOf="@+id/lesson_date_txt" />
+                app:layout_constraintStart_toEndOf="@+id/lesson_date_txt"
+                app:layout_constraintTop_toBottomOf="@+id/lessonName" />
 
             <TextView
                 android:id="@+id/lesson_grade"

@@ -70,14 +70,15 @@ public class UpdateSubjectActivity  extends AppCompatActivity {
         Update_Button.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
+                /*
                 AppDatabase db = Room.databaseBuilder(getApplicationContext(),
                         AppDatabase.class, "app_database").allowMainThreadQueries().build();
                 ISubjectsDao iSubjectsDao = db.iSubjectsDao();
-                //iSubjectsDao.updateSubject(subjectId, subject_name.getText().toString().trim(),
-               //         subject_lang.getSelectedItem().toString().trim(),
-                //        subject_ide.getSelectedItem().toString().trim());
+                iSubjectsDao.updateSubject(subjectId, subject_name.getText().toString().trim(),
+                        subject_lang.getSelectedItem().toString().trim(),
+                        subject_ide.getSelectedItem().toString().trim());
                 startActivity(new Intent(getApplicationContext(),SubjectActivity.class));
-                finish();
+                finish();*/
             }
         });
     }

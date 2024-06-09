@@ -56,11 +56,10 @@ public class SubjectRowAdapter extends RecyclerView.Adapter<SubjectRowAdapter.My
         holder.updateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view){
-                /*
                 Intent intent = new Intent(new Intent(holder.updateBtn.getContext(), UpdateSubjectActivity.class));
-                intent.putExtra("subjectId", String.valueOf(students.get(position).getSid()));
-                intent.putExtra("subjectName", students.get(position).getName());
-                holder.updateBtn.getContext().startActivity(intent);*/
+                intent.putExtra("subjectId", String.valueOf(subjects.get(position).getSid()));
+                intent.putExtra("subjectName", subjects.get(position).getName());
+                holder.updateBtn.getContext().startActivity(intent);
             }
         });
     }

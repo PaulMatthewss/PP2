@@ -71,14 +71,14 @@ public class StudentsActivity extends AppCompatActivity {
         recyclerView_students.setAdapter(studentRowAdapter);
         studentViewModel = new ViewModelProvider(this).get(StudentViewModel.class);
         studentViewModel.getAllStudents().observe(this, students -> studentRowAdapter.setStudents(students));
-        /*
         studentRowAdapter.setOnItemClickListener(student -> {
             Intent intent = new Intent(StudentsActivity.this, LessonsActivity.class);
+            /*
             intent.putExtra(SUB_TO_PARSE, subject_name);
             intent.putExtra(GROUP_TO_PARSE, group_name);
-            intent.putExtra(STUD_TO_PARSE, String.valueOf(student.getStud_num()));
+            intent.putExtra(STUD_TO_PARSE, String.valueOf(student.getStud_num()));*/
             startActivity(intent);
-        });*/
+        });
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {

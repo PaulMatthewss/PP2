@@ -43,4 +43,5 @@ public class LessonViewModel extends AndroidViewModel {
     public LiveData<Integer> getAccepted_Works(){
         return sumLessonsAccepted;
     }
+
 }

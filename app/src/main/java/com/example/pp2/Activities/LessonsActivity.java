@@ -55,7 +55,6 @@ public class LessonsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lessons);
-        Add_Button = findViewById(R.id.Add_Button);
         Back_Button = findViewById(R.id.Button_Back);
         recyclerView = findViewById(R.id.recyclerView);
         accepted_works = findViewById(R.id.accepted_works);
@@ -64,19 +63,11 @@ public class LessonsActivity extends AppCompatActivity {
         String subject_name = getIntent().getStringExtra(StudentsActivity.SUB_TO_PARSE);
         String group_name = getIntent().getStringExtra(StudentsActivity.GROUP_TO_PARSE);
         String student_number = getIntent().getStringExtra(StudentsActivity.STUD_TO_PARSE);
-        setTitle(subject_name + ": " + group_name + ", " + student_number);
         Back_Button.setOnClickListener(view -> {
             Intent intent = new Intent(LessonsActivity.this, StudentsActivity.class);
             intent.putExtra(SUB_TO_PARSE, subject_name);
             intent.putExtra(GROUP_TO_PARSE, group_name);
             startActivity(intent);
-        });
-        Add_Button.setOnClickListener(view -> {
-            Intent intent = new Intent(LessonsActivity.this, AddLessonActivity.class);
-            intent.putExtra(SUB_TO_PARSE, subject_name);
-            intent.putExtra(GROUP_TO_PARSE, group_name);
-            intent.putExtra(STUD_TO_PARSE, student_number);
-            startActivityForResult(intent, ADD_LESSON_REQUEST);
         });
         recyclerView.setLayoutManager(new LinearLayoutManager(LessonsActivity.this));
         recyclerView.setHasFixedSize(true);

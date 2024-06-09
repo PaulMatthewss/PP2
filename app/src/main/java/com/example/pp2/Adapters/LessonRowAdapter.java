@@ -19,6 +19,7 @@ import com.example.pp2.Entities.Lesson;
 import com.example.pp2.Interfaces.ILessonDao;
 import com.example.pp2.Interfaces.IStudentDao;
 import com.example.pp2.R;
+import com.example.pp2.UpdateActivities.UpdateLessonActivity;
 import com.example.pp2.UpdateActivities.UpdateSubjectActivity;
 
 import java.util.ArrayList;
@@ -40,7 +41,7 @@ public class LessonRowAdapter extends RecyclerView.Adapter<LessonRowAdapter.MyVi
     public void onBindViewHolder(@NonNull LessonRowAdapter.MyViewHolder holder, int position) {
         Lesson currentLesson = lessons.get(position);
         holder.lesson_date_txt.setText(String.valueOf(currentLesson.getLesson_date()));
-        holder.lesson_type_txt.setText(String.valueOf(currentLesson.getLesson_type()));
+        holder.lessonName.setText(String.valueOf(currentLesson.getWork_number()));
         holder.lesson_grade.setText(String.valueOf(currentLesson.getGrade()));
         holder.deleteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,11 +57,10 @@ public class LessonRowAdapter extends RecyclerView.Adapter<LessonRowAdapter.MyVi
         holder.updateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view){
-                /*
-                Intent intent = new Intent(new Intent(holder.updateBtn.getContext(), UpdateSubjectActivity.class));
-                intent.putExtra("subjectId", String.valueOf(students.get(position).getSid()));
-                intent.putExtra("subjectName", students.get(position).getName());
-                holder.updateBtn.getContext().startActivity(intent);*/
+                Intent intent = new Intent(new Intent(holder.updateBtn.getContext(), UpdateLessonActivity.class));
+                intent.putExtra("subjectId", String.valueOf(lessons.get(position).getLes_id()));
+                intent.putExtra("subjectName", lessons.get(position).getGrade());
+                holder.updateBtn.getContext().startActivity(intent);
             }
         });
     }
@@ -75,7 +75,7 @@ public class LessonRowAdapter extends RecyclerView.Adapter<LessonRowAdapter.MyVi
         notifyDataSetChanged();
     }
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView lesson_id_txt, lesson_date_txt, lesson_type_txt, lesson_textbox, lesson_grade;
+        TextView lesson_id_txt, lesson_date_txt, lessonName, lesson_textbox, lesson_grade;
         ImageButton updateBtn, deleteBtn;
         LinearLayout row_element;
         public MyViewHolder(@NonNull View itemView) {
@@ -84,7 +84,7 @@ public class LessonRowAdapter extends RecyclerView.Adapter<LessonRowAdapter.MyVi
             deleteBtn = itemView.findViewById(R.id.deleteBtn);
             lesson_id_txt = itemView.findViewById(R.id.lesson_id_txt);
             lesson_date_txt = itemView.findViewById(R.id.lesson_date_txt);
-            lesson_type_txt = itemView.findViewById(R.id.lesson_type_txt);
+            lessonName = itemView.findViewById(R.id.lessonName);
             lesson_textbox = itemView.findViewById(R.id.lesson_textbox);
             lesson_grade = itemView.findViewById(R.id.lesson_grade);
             row_element = itemView.findViewById(R.id.row_element);
